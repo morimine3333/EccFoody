@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ECC FOODY</string>
+    <string name="tl_MoneyNow">   ECC FOODY</string>
+    <string name="tl_MoneyUsable">ECC FOODY</string>
+    <string name="tl_En">￥</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_name">ECC Foody</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_maps">Map</string>
+</resources>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_money_input"
+            android:icon="@drawable/money_black"
+            android:title="MoneyOut" />
+
+        <item
+            android:id="@+id/nav_tag"
+            android:icon="@drawable/tag_black"
+            android:title="Tag" />
+
+    </group>
+
+    <item android:title="Setting">
+
+        <menu>
+
+            <item
+                android:id="@+id/nav_tool"
+                android:icon="@drawable/tool_black"
+                android:title="Tools" />
+
+            <item
+                android:id="@+id/nav_calendar"
+                android:icon="@drawable/calendar_black"
+                android:title="Design" />
+
+            <item
+                android:id="@+id/nav_info"
+                android:icon="@drawable/info_black"
+                android:title="Helpppp" />
+        </menu>
+
+
+    </item>
+
+ </menu>
