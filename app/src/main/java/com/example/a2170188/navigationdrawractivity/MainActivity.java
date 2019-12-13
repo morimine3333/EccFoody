@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     //Log.d用
     private static final String TAG = "MainActivity";
 
-
+//모리군은 최고로 섹시합니다.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
