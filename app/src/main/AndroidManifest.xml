@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
+        android:name= "com.example.a2170188.navigationdrawractivity.MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/icon3"
         android:label="@string/app_name"

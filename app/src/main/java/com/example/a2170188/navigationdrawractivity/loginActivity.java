@@ -95,4 +95,10 @@ public class loginActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    // 戻るボタン押下
+    @Override
+    public void onBackPressed() {
+        // 何もしない
+    }
 }
