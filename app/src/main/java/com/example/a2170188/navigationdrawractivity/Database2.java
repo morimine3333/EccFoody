@@ -699,6 +699,7 @@ public class Database2 {
     }
 
 
+    //検索結果表示画面用
     //1.店名, 昼予算、　夜予算
     //2.写真
     public void search(final Context context, final String searchText, final String searchGenre, final List<TextView> storeNameList, final List<ImageView> imgList) {

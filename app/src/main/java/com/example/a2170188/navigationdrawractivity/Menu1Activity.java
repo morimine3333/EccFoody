@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -321,27 +322,24 @@ public class Menu1Activity {
 //
 
         //検索結果画面へ遷移する
-//        Button button = (Button) view.findViewById(R.id.send_button);
-//        button.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v){
-//                Intent intent = new Intent(getApplication(),Test1Activity.class);
-//                EditText edittext = view.findViewById(R.id.text);
-//
-//                String text =  edittext.getText().toString();
-//
-//                Spinner spinner = view.findViewById(R.id.spinner);
-//                String genre =(String)spinner.getSelectedItem();
-//
-//
-//
-//                intent.putExtra("Text", text);
-//
-//                intent.putExtra("Genre", genre);
-//
-//                startActivity(intent);
-//            }
-//        });
+        Button button = (Button) view.findViewById(R.id.send_button);
+        button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                MyApplication.getInputMethodManager().hideSoftInputFromWindow(v.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
+                //検索バーに入力されている文字を取得
+                EditText edittext = view.findViewById(R.id.text);
+                String text =  edittext.getText().toString();
+
+                //選択されているジャンルを取得
+                Spinner spinner = view.findViewById(R.id.spinner);
+                String genre =(String)spinner.getSelectedItem();
+
+                SearchResults searchResults = new SearchResults(text, genre);
+                searchResults.change();
+            }
+        });
 //
 
         //店舗詳細画面へ遷移する

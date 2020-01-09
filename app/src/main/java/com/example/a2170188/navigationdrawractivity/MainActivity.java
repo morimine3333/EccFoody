@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -141,14 +142,26 @@ public class MainActivity extends AppCompatActivity {
             MyApplication.getAppContext().startActivity(new Intent(MyApplication.getAppContext(), loginActivity.class));
         }
 
+        //https://qiita.com/Bth0061/items/c4f66477979d064913e4
+        //LayoutInflaterとFrameLayoutの共有化 どこからでも取り出せるようにしておく
+//        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        //https://www.dogrow.net/android/blog8/　追記
+        MyApplication.setInflater((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE));
+        MyApplication.setFrameLayout((FrameLayout) findViewById(R.id.frame_layout));
+        MyApplication.setInputMethodManager((InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE));
+
         //アプリ起動時の画面遷移(ホーム画面)
         changeView(0);
+
     }
 
     private void changeView(int index) {
-        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = MyApplication.getInflater();
 
-        FrameLayout frame = (FrameLayout) findViewById(R.id.frame_layout);
+        FrameLayout frame = MyApplication.getFrameLayout();
+
+        //ここでおそらく画面切り替えが複数あった場合(画面が複数重なっている状態)
+        //リセットしてリソースを開放している
         if (frame.getChildCount() > 0) {
             frame.removeViewAt(0);
         }

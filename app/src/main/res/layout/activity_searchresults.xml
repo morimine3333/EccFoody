@@ -54,7 +54,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:src="@drawable/img01"/>
+                        />
 
                     <ImageView
                         android:id="@+id/searchImage02"
@@ -64,7 +64,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:src="@drawable/img01" />
+                         />
 
                 </LinearLayout>
             </LinearLayout>
@@ -99,7 +99,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:src="@drawable/img01"/>
+                        />
 
                     <ImageView
                         android:id="@+id/searchImage04"
@@ -109,7 +109,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:src="@drawable/img01"/>
+                        />
 
                 </LinearLayout>
             </LinearLayout>
@@ -145,7 +145,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:src="@drawable/img01"/>
+                        />
 
                     <ImageView
                         android:id="@+id/searchImage06"
@@ -155,7 +155,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:src="@drawable/img01"/>
+                        />
 
                 </LinearLayout>
             </LinearLayout>
@@ -190,7 +190,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:src="@drawable/img01"/>
+                        />
 
                     <ImageView
                         android:id="@+id/searchImage08"
@@ -200,7 +200,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:src="@drawable/img01"/>
+                        />
 
                 </LinearLayout>
             </LinearLayout>
@@ -235,7 +235,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:src="@drawable/img01"/>
+                        />
 
                     <ImageView
                         android:id="@+id/searchImage10"
@@ -245,7 +245,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:src="@drawable/img01"/>
+                        />
 
                 </LinearLayout>
             </LinearLayout>
@@ -281,7 +281,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:src="@drawable/img01"/>
+                        />
 
                     <ImageView
                         android:id="@+id/searchImage12"
@@ -291,7 +291,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:src="@drawable/img01"/>
+                        />
 
                 </LinearLayout>
             </LinearLayout>
@@ -326,7 +326,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:src="@drawable/img01"/>
+                        />
 
                     <ImageView
                         android:id="@+id/searchImage14"
@@ -336,7 +336,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:src="@drawable/img01"/>
+                        />
 
                 </LinearLayout>
             </LinearLayout>
@@ -371,7 +371,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:src="@drawable/img01"/>
+                        />
 
                     <ImageView
                         android:id="@+id/searchImage16"
@@ -381,7 +381,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:src="@drawable/img01"/>
+                        />
 
                 </LinearLayout>
             </LinearLayout>
@@ -416,7 +416,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:src="@drawable/img01"/>
+                        />
 
                     <ImageView
                         android:id="@+id/searchImage18"
@@ -426,7 +426,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:src="@drawable/img01"/>
+                        />
 
                 </LinearLayout>
             </LinearLayout>
@@ -460,7 +460,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:src="@drawable/img01"/>
+                        />
 
                     <ImageView
                         android:id="@+id/searchImage20"
@@ -470,7 +470,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:src="@drawable/img01"/>
+                        />
 
                 </LinearLayout>
             </LinearLayout>

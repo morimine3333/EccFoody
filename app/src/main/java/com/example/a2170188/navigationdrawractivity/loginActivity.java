@@ -1,9 +1,11 @@
 package com.example.a2170188.navigationdrawractivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -48,6 +50,8 @@ public class loginActivity extends AppCompatActivity {
             // クリック時に呼ばれるメソッド
             @Override
             public void onClick(View view) {
+                InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 login();
                 Toast.makeText(loginActivity.this, "ログインボタン", Toast.LENGTH_LONG).show();
             }

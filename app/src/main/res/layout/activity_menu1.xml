@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:isScrollContainer="false"
+        android:layout_marginBottom="35dp"
         android:id="@+id/scrollview">
         <LinearLayout
             android:layout_width="match_parent"
@@ -66,6 +67,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scrollbars="none"
+
                 tools:context=".MainActivity">
 
                 <LinearLayout
@@ -80,6 +82,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
+                        android:padding="6dp"
                         android:background="@drawable/border"
                         android:orientation="vertical">
 
@@ -165,6 +168,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
+                            android:padding="6dp"
                             android:background="@drawable/border"
                             android:orientation="vertical">
 
@@ -250,6 +254,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
+                            android:padding="6dp"
                             android:background="@drawable/border"
                             android:orientation="vertical">
 
@@ -335,6 +340,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
+                            android:padding="6dp"
                             android:background="@drawable/border"
                             android:orientation="vertical">
 
@@ -420,6 +426,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
+                            android:padding="6dp"
                             android:background="@drawable/border"
                             android:orientation="vertical">
 
@@ -505,6 +512,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
+                            android:padding="6dp"
                             android:background="@drawable/border"
                             android:orientation="vertical">
 
@@ -590,6 +598,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
+                            android:padding="6dp"
                             android:background="@drawable/border"
                             android:orientation="vertical">
 
@@ -675,6 +684,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
+                            android:padding="6dp"
                             android:background="@drawable/border"
                             android:orientation="vertical">
 
@@ -760,6 +770,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
+                            android:padding="6dp"
                             android:background="@drawable/border"
                             android:orientation="vertical">
 
@@ -845,6 +856,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
+                            android:padding="6dp"
                             android:background="@drawable/border"
                             android:orientation="vertical">
 
@@ -1727,6 +1739,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:orientation="vertical"
                 android:background="@drawable/border">
 
