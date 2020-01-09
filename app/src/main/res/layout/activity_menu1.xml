@@ -1,29 +1,1816 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Menu1Activity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="121dp"
-        android:layout_marginTop="341dp"
-        android:text="TextView1"
-        android:textSize="36sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:isScrollContainer="false"
+        android:id="@+id/scrollview">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:baselineAligned="false"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="158dp"
-        android:layout_marginTop="48dp"
-        android:text="Button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <EditText
+                android:id="@+id/text"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="0"
+                android:hint="@string/hint"
+                android:inputType="text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@drawable/border"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:entries="@array/list"
+                    android:spinnerMode="dropdown"
+                    />
+
+                <Button
+                    android:id="@+id/send_button"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:text="@string/button" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:text="いいねトップ10"
+                android:textColor="#000000"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none"
+                tools:context=".MainActivity">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/border"
+                        android:orientation="vertical">
+
+                        <!--1-->
+                        <!--店名-->
+                        <TextView
+                            android:id="@+id/rankstorename1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Name"
+                            android:textSize="20sp" />
+
+                        <!--写真-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:id="@+id/rankimg01"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:layout_marginRight="1dp"
+                                />
+
+                            <ImageView
+                                android:id="@+id/rankimg02"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:layout_marginLeft="1dp"
+                                />
+                        </LinearLayout>
+
+                        <!--アイコン・性／名-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/rankicon01"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/rankfirstname01"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="性" />
+
+                                <TextView
+                                    android:id="@+id/ranklastname01"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="名" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <!--テキスト-->
+                        <TextView
+                            android:id="@+id/ranktext01"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:ellipsize="end"
+                            android:maxLines="2"
+                            android:text="あいうえおかきくけこさしすせそたちつてとあいうえおかきくけこさしすせそたちつてと"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <!--2-->
+                        <LinearLayout
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/border"
+                            android:orientation="vertical">
+
+                            <!--店名-->
+                            <TextView
+                                android:id="@+id/rankstorename2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Name"
+                                android:textSize="20sp" />
+
+                            <!--写真-->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <ImageView
+                                    android:id="@+id/rankimg03"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_marginRight="1dp"
+                                    />
+
+                                <ImageView
+                                    android:id="@+id/rankimg04"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_marginLeft="1dp"
+                                    />
+                            </LinearLayout>
+
+                            <!--アイコン・性／名-->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:id="@+id/rankicon02"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/rankfirstname02"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="性" />
+
+                                    <TextView
+                                        android:id="@+id/ranklastname02"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="名" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <!--テキスト-->
+                            <TextView
+                                android:id="@+id/ranktext02"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ellipsize="end"
+                                android:maxLines="2"
+                                android:text="あいうえおかきくけこさしすせそたちつてとあいうえおかきくけこさしすせそたちつてと"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <!--3-->
+                        <LinearLayout
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/border"
+                            android:orientation="vertical">
+
+                            <!--店名-->
+                            <TextView
+                                android:id="@+id/rankstorename3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Name"
+                                android:textSize="20sp" />
+
+                            <!--写真-->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <ImageView
+                                    android:id="@+id/rankimg05"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_marginRight="1dp"
+                                    />
+
+                                <ImageView
+                                    android:id="@+id/rankimg06"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_marginLeft="1dp"
+                                    />
+                            </LinearLayout>
+
+                            <!--アイコン・性／名-->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:id="@+id/rankicon03"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/rankfirstname03"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="性" />
+
+                                    <TextView
+                                        android:id="@+id/ranklastname03"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="名" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <!--テキスト-->
+                            <TextView
+                                android:id="@+id/ranktext03"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ellipsize="end"
+                                android:maxLines="2"
+                                android:text="あいうえおかきくけこさしすせそたちつてとあいうえおかきくけこさしすせそたちつてと"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <!--4-->
+                        <LinearLayout
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/border"
+                            android:orientation="vertical">
+
+                            <!--店名-->
+                            <TextView
+                                android:id="@+id/rankstorename4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Name"
+                                android:textSize="20sp" />
+
+                            <!--写真-->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <ImageView
+                                    android:id="@+id/rankimg07"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_marginRight="1dp"
+                                    />
+
+                                <ImageView
+                                    android:id="@+id/rankimg08"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_marginLeft="1dp"
+                                    />
+                            </LinearLayout>
+
+                            <!--アイコン・性／名-->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:id="@+id/rankicon04"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/rankfirstname04"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="性" />
+
+                                    <TextView
+                                        android:id="@+id/ranklastname04"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="名" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <!--テキスト-->
+                            <TextView
+                                android:id="@+id/ranktext04"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ellipsize="end"
+                                android:maxLines="2"
+                                android:text="あいうえおかきくけこさしすせそたちつてとあいうえおかきくけこさしすせそたちつてと"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <!--5-->
+                        <LinearLayout
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/border"
+                            android:orientation="vertical">
+
+                            <!--店名-->
+                            <TextView
+                                android:id="@+id/rankstorename5"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Name"
+                                android:textSize="20sp" />
+
+                            <!--写真-->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <ImageView
+                                    android:id="@+id/rankimg09"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_marginRight="1dp"
+                                    />
+
+                                <ImageView
+                                    android:id="@+id/rankimg10"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_marginLeft="1dp"
+                                    />
+                            </LinearLayout>
+
+                            <!--アイコン・性／名-->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:id="@+id/rankicon05"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/rankfirstname05"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="性" />
+
+                                    <TextView
+                                        android:id="@+id/ranklastname05"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="名" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <!--テキスト-->
+                            <TextView
+                                android:id="@+id/ranktext05"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ellipsize="end"
+                                android:maxLines="2"
+                                android:text="あいうえおかきくけこさしすせそたちつてとあいうえおかきくけこさしすせそたちつてと"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <!--6-->
+                        <LinearLayout
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/border"
+                            android:orientation="vertical">
+
+                            <!--店名-->
+                            <TextView
+                                android:id="@+id/rankstorename6"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Name"
+                                android:textSize="20sp" />
+
+                            <!--写真-->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <ImageView
+                                    android:id="@+id/rankimg11"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_marginRight="1dp"
+                                    />
+
+                                <ImageView
+                                    android:id="@+id/rankimg12"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_marginLeft="1dp"
+                                    />
+                            </LinearLayout>
+
+                            <!--アイコン・性／名-->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:id="@+id/rankicon06"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/rankfirstname06"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="性" />
+
+                                    <TextView
+                                        android:id="@+id/ranklastname06"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="名" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <!--テキスト-->
+                            <TextView
+                                android:id="@+id/ranktext06"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ellipsize="end"
+                                android:maxLines="2"
+                                android:text="あいうえおかきくけこさしすせそたちつてとあいうえおかきくけこさしすせそたちつてと"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <!--7-->
+                        <LinearLayout
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/border"
+                            android:orientation="vertical">
+
+                            <!--店名-->
+                            <TextView
+                                android:id="@+id/rankstorename7"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Name"
+                                android:textSize="20sp" />
+
+                            <!--写真-->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <ImageView
+                                    android:id="@+id/rankimg13"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_marginRight="1dp"
+                                    />
+
+                                <ImageView
+                                    android:id="@+id/rankimg14"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_marginLeft="1dp"
+                                    />
+                            </LinearLayout>
+
+                            <!--アイコン・性／名-->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:id="@+id/rankicon07"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/rankfirstname07"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="性" />
+
+                                    <TextView
+                                        android:id="@+id/ranklastname07"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="名" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <!--テキスト-->
+                            <TextView
+                                android:id="@+id/ranktext07"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ellipsize="end"
+                                android:maxLines="2"
+                                android:text="あいうえおかきくけこさしすせそたちつてとあいうえおかきくけこさしすせそたちつてと"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <!--8-->
+                        <LinearLayout
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/border"
+                            android:orientation="vertical">
+
+                            <!--店名-->
+                            <TextView
+                                android:id="@+id/rankstorename8"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Name"
+                                android:textSize="20sp" />
+
+                            <!--写真-->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <ImageView
+                                    android:id="@+id/rankimg15"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_marginRight="1dp"
+                                    />
+
+                                <ImageView
+                                    android:id="@+id/rankimg16"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_marginLeft="1dp"
+                                    />
+                            </LinearLayout>
+
+                            <!--アイコン・性／名-->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:id="@+id/rankicon08"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/rankfirstname08"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="性" />
+
+                                    <TextView
+                                        android:id="@+id/ranklastname08"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="名" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <!--テキスト-->
+                            <TextView
+                                android:id="@+id/ranktext08"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ellipsize="end"
+                                android:maxLines="2"
+                                android:text="あいうえおかきくけこさしすせそたちつてとあいうえおかきくけこさしすせそたちつてと"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <!--9-->
+                        <LinearLayout
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/border"
+                            android:orientation="vertical">
+
+                            <!--店名-->
+                            <TextView
+                                android:id="@+id/rankstorename9"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Name"
+                                android:textSize="20sp"/>
+
+                            <!--写真-->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <ImageView
+                                    android:id="@+id/rankimg17"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_marginRight="1dp"
+                                    />
+
+                                <ImageView
+                                    android:id="@+id/rankimg18"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_marginLeft="1dp"
+                                    />
+                            </LinearLayout>
+
+                            <!--アイコン・性／名-->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:id="@+id/rankicon09"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/rankfirstname09"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="性" />
+
+                                    <TextView
+                                        android:id="@+id/ranklastname09"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="名" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <!--テキスト-->
+                            <TextView
+                                android:id="@+id/ranktext09"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ellipsize="end"
+                                android:maxLines="2"
+                                android:text="あいうえおかきくけこさしすせそたちつてとあいうえおかきくけこさしすせそたちつてと"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <!--10-->
+                        <LinearLayout
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/border"
+                            android:orientation="vertical">
+
+                            <!--店名-->
+                            <TextView
+                                android:id="@+id/rankstorename10"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Name"
+                                android:textSize="20sp" />
+
+                            <!--写真-->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <ImageView
+                                    android:id="@+id/rankimg19"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_marginRight="1dp"
+                                    />
+
+                                <ImageView
+                                    android:id="@+id/rankimg20"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_marginLeft="1dp"
+                                    />
+                            </LinearLayout>
+
+                            <!--アイコン・性／名-->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:id="@+id/rankicon10"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/rankfirstname10"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="性" />
+
+                                    <TextView
+                                        android:id="@+id/ranklastname10"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="名" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <!--テキスト-->
+                            <TextView
+                                android:id="@+id/ranktext10"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:ellipsize="end"
+                                android:maxLines="2"
+                                android:text="あいうえおかきくけこさしすせそたちつてとあいうえおかきくけこさしすせそたちつてと"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!--人の新着投稿-->
+            <!-- 1-->
+            <LinearLayout
+                android:id="@+id/test00"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/border">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <!-- アイコン-->
+                    <ImageView
+                        android:id="@+id/newicon01"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/newfirstname01"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="性" />
+
+                        <TextView
+                            android:id="@+id/newlastname01"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="名" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/newstorename01"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Title"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/newTime01"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="320dp"
+                    android:text="2019年12月30日"
+                    android:textSize="11sp"/>
+
+                <!-- 投稿の説明 -->
+                <TextView
+                    android:id="@+id/newText01"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="投稿の説明" />
+
+                <!-- 写真-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/newImage01"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        />
+
+                    <ImageView
+                        android:id="@+id/newImage02"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
+            <!-- 2 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/border">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <!-- アイコン-->
+                    <ImageView
+                        android:id="@+id/newicon02"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/newfirstname02"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="性"/>
+
+                        <TextView
+                            android:id="@+id/newlastname02"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="名"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/newstorename02"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Title"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/newTime02"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="320dp"
+                    android:text="2019年12月30日"
+                    android:textSize="11sp"/>
+                <!-- 投稿の説明 -->
+                <TextView
+                    android:id="@+id/newText02"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="投稿の説明" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/newImage03"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        />
+
+                    <ImageView
+                        android:id="@+id/newImage04"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
+            <!-- 3 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/border">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <!-- アイコン-->
+                    <ImageView
+                        android:id="@+id/newicon03"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/newfirstname03"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="性"/>
+
+                        <TextView
+                            android:id="@+id/newlastname03"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="名"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/newstorename03"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Title"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/newTime03"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="320dp"
+                    android:text="2019年12月30日"
+                    android:textSize="11sp"/>
+                <!-- 投稿の説明 -->
+                <TextView
+                    android:id="@+id/newText03"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="投稿の説明" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/newImage05"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        />
+
+                    <ImageView
+                        android:id="@+id/newImage06"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
+            <!-- 4 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/border">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <!-- アイコン-->
+                    <ImageView
+                        android:id="@+id/newicon04"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/newfirstname04"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="性"/>
+
+                        <TextView
+                            android:id="@+id/newlastname04"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="名"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/newstorename04"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Title"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/newTime04"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="320dp"
+                    android:text="2019年12月30日"
+                    android:textSize="11sp"/>
+                <!-- 投稿の説明 -->
+                <TextView
+                    android:id="@+id/newText04"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="投稿の説明" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/newImage07"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        />
+
+                    <ImageView
+                        android:id="@+id/newImage08"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
+            <!--  5 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/border">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <!-- アイコン-->
+                    <ImageView
+                        android:id="@+id/newicon05"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/newfirstname05"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="性"/>
+
+                        <TextView
+                            android:id="@+id/newlastname05"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="名"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/newstorename05"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Title"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/newTime05"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="320dp"
+                    android:text="2019年12月30日"
+                    android:textSize="11sp"/>
+                <!-- 投稿の説明 -->
+                <TextView
+                    android:id="@+id/newText05"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="投稿の説明" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/newImage09"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        />
+
+                    <ImageView
+                        android:id="@+id/newImage10"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
+            <!-- 6 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/border">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <!-- アイコン-->
+                    <ImageView
+                        android:id="@+id/newicon06"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/newfirstname06"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="性"/>
+
+                        <TextView
+                            android:id="@+id/newlastname06"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="名"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/newstorename06"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Title"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/newTime06"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="320dp"
+                    android:text="2019年12月30日"
+                    android:textSize="11sp"/>
+                <!-- 投稿の説明 -->
+                <TextView
+                    android:id="@+id/newText06"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="投稿の説明" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/newImage11"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        />
+
+                    <ImageView
+                        android:id="@+id/newImage12"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
+            <!-- 7 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/border">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <!-- アイコン-->
+                    <ImageView
+                        android:id="@+id/newicon07"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/newfirstname07"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="性"/>
+
+                        <TextView
+                            android:id="@+id/newlastname07"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="名"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/newstorename07"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Title"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/newTime07"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="320dp"
+                    android:text="2019年12月30日"
+                    android:textSize="11sp"/>
+                <!-- 投稿の説明 -->
+                <TextView
+                    android:id="@+id/newText07"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="投稿の説明" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/newImage13"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        />
+
+                    <ImageView
+                        android:id="@+id/newImage14"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
+            <!-- 8 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/border">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <!-- アイコン-->
+                    <ImageView
+                        android:id="@+id/newicon08"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/newfirstname08"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="性"/>
+
+                        <TextView
+                            android:id="@+id/newlastname08"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="名"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/newstorename08"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Title"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/newTime08"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="320dp"
+                    android:text="2019年12月30日"
+                    android:textSize="11sp"/>
+                <!-- 投稿の説明 -->
+                <TextView
+                    android:id="@+id/newText08"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="投稿の説明" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/newImage15"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        />
+
+                    <ImageView
+                        android:id="@+id/newImage16"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
+            <!-- 9 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/border">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <!-- アイコン-->
+                    <ImageView
+                        android:id="@+id/newicon09"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/newfirstname09"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="性"/>
+
+                        <TextView
+                            android:id="@+id/newlastname09"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="名"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/newstorename09"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Title"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/newTime09"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="320dp"
+                    android:text="2019年12月30日"
+                    android:textSize="11sp"/>
+                <!-- 投稿の説明 -->
+                <TextView
+                    android:id="@+id/newText09"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="投稿の説明" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/newImage17"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        />
+
+                    <ImageView
+                        android:id="@+id/newImage18"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
+            <!-- 10 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/border">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <!-- アイコン-->
+                    <ImageView
+                        android:id="@+id/newicon10"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/newfirstname10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="性"/>
+
+                        <TextView
+                            android:id="@+id/newlastname10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="名"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/newstorename10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Title"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/newTime10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="320dp"
+                    android:text="2019年12月30日"
+                    android:textSize="11sp"/>
+
+                <!-- 投稿の説明 -->
+                <TextView
+                    android:id="@+id/newText10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="投稿の説明" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/newImage19"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        />
+
+                    <ImageView
+                        android:id="@+id/newImage20"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

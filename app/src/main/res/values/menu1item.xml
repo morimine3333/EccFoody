@@ -1,0 +1,15 @@
+<resources>
+
+    <string name="hint">🔍店名</string>
+    <string name="button">検索</string>
+    <string name="osusume">おすすめの投稿</string>
+    <string name="iine">(・∀・)ｲｲﾈ!!</string>
+    <string name="koment">コメント</string>
+    <string-array name="list">
+        <item>日本料理</item>
+        <item>韓国</item>
+        <item>中国</item>
+        <item>タイ</item>
+        <item>ベトナム</item>
+    </string-array>
+</resources>

@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SearchResults">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:isScrollContainer="false"
+        android:id="@+id/scrollview">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="(仮)"
+                android:id="@+id/searchTextView1"/>
+
+            <!--1-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/border">
+
+
+                <TextView
+                    android:id="@+id/searchstorename01"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Title"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <!-- 写真-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/searchImage01"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/img01"/>
+
+                    <ImageView
+                        android:id="@+id/searchImage02"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/img01" />
+
+                </LinearLayout>
+            </LinearLayout>
+            <!--2-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/border">
+
+
+                <TextView
+                    android:id="@+id/searchstorename02"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Title"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <!-- 写真-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/searchImage03"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/img01"/>
+
+                    <ImageView
+                        android:id="@+id/searchImage04"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/img01"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--3-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/border">
+
+
+                <TextView
+                    android:id="@+id/searchstorename03"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Title"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <!-- 写真-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/searchImage05"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/img01"/>
+
+                    <ImageView
+                        android:id="@+id/searchImage06"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/img01"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--4-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/border">
+
+                <TextView
+                    android:id="@+id/searchstorename04"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Title"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <!-- 写真-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/searchImage07"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/img01"/>
+
+                    <ImageView
+                        android:id="@+id/searchImage08"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/img01"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--5-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/border">
+
+                <TextView
+                    android:id="@+id/searchstorename05"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Title"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <!-- 写真-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/searchImage09"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/img01"/>
+
+                    <ImageView
+                        android:id="@+id/searchImage10"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/img01"/>
+
+                </LinearLayout>
+            </LinearLayout>
+            <!-- 6-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/border">
+
+
+
+                <TextView
+                    android:id="@+id/searchstorename06"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Title"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <!-- 写真-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/searchImage11"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/img01"/>
+
+                    <ImageView
+                        android:id="@+id/searchImage12"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/img01"/>
+
+                </LinearLayout>
+            </LinearLayout>
+            <!--7-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/border">
+
+
+                <TextView
+                    android:id="@+id/searchstorename07"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Title"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <!-- 写真-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/searchImage13"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/img01"/>
+
+                    <ImageView
+                        android:id="@+id/searchImage14"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/img01"/>
+
+                </LinearLayout>
+            </LinearLayout>
+            <!--8-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/border">
+
+
+                <TextView
+                    android:id="@+id/searchstorename08"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Title"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <!-- 写真-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/searchImage15"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/img01"/>
+
+                    <ImageView
+                        android:id="@+id/searchImage16"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/img01"/>
+
+                </LinearLayout>
+            </LinearLayout>
+            <!--9-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/border">
+
+
+                <TextView
+                    android:id="@+id/searchstorename09"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Title"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <!-- 写真-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/searchImage17"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/img01"/>
+
+                    <ImageView
+                        android:id="@+id/searchImage18"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/img01"/>
+
+                </LinearLayout>
+            </LinearLayout>
+            <!--10-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/border">
+
+                <TextView
+                    android:id="@+id/searchstorename10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Title"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <!-- 写真-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/searchImage19"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/img01"/>
+
+                    <ImageView
+                        android:id="@+id/searchImage20"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/img01"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -139,9 +139,6 @@ public class MainActivity extends AppCompatActivity {
             // 未認証
             //ログイン画面に遷移する
             MyApplication.getAppContext().startActivity(new Intent(MyApplication.getAppContext(), loginActivity.class));
-//            startActivity(new Intent(MainActivity.this, loginActivity.class));
-//            activity.startActivity(new Intent(activity, loginActivity.class));
-//            weakReference.get().startActivity(new Intent(weakReference.get(), loginActivity.class));
         }
 
         //アプリ起動時の画面遷移(ホーム画面)
