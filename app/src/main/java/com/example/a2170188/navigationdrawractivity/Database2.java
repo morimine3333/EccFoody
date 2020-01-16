@@ -1,22 +1,17 @@
 package com.example.a2170188.navigationdrawractivity;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -27,18 +22,19 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
 
-import java.io.InputStream;
-import java.net.URL;
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+//Database2をMenu1Activityなど使うクラスで生成
+//Database2の各関数内でDatabase2Valueを生成 繰り返し処理内等で生成する(複数の別の場所参照のインスタンスを生成)
+//更に別関数を呼び出す(別画面へ移行)するときはDatabaseValue2オブジェクトから必要な値を取得して使いまわすのが理想
 
 //データベースはコレクション>ドキュメント>フィールドが基本
 
@@ -504,7 +500,9 @@ public class Database2 {
 //        });
 //    }
 
-    //順番
+    //トップ画面のいいね数top10取り出すよう
+    //いいね数top10を押下時
+    //店舗詳細画面へ遷移する
     //1:写真          テキスト
     //2:アイコン      性 名
     //3:店名
@@ -523,9 +521,12 @@ public class Database2 {
                         //何番目の処理か分かるようにする変数
                         final int num = count;
 
+                        //次の画面に遷移するために必要なidを保持する変数
+                        final Database2Value database2Value = new Database2Value();
+
                         //テキスト
                         Log.d(TAG, "テキスト:" + document.get("text").toString());
-                        textlist.get(count).setText(document.get("text").toString());
+                        textlist.get(num).setText(document.get("text").toString());
 
                         //写真
                         List<String> photolist = (List<String>) document.get("photolist");
@@ -571,25 +572,27 @@ public class Database2 {
                                     if (d.exists()) {
                                         Log.d(TAG, "店名:" + d.get("name").toString());
                                         storenamelist.get(num).setText(d.get("name").toString());
+
+                                        //店舗Id
+                                        final String storeID = d.getId();
+                                        //LinearLayoutにClickListner実装
+                                        ViewGroup vg = (ViewGroup)storenamelist.get(num).getParent();
+                                        vg.setClickable(true);
+                                        vg.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                //店舗詳細画面に遷移
+                                                //必要なのは店舗ID
+                                                storenamelist.get(num).setText(storeID);
+                                                storeDetails(storeID);
+                                            }
+                                        });
                                     } else {
-                                        Log.d(TAG, "店名エラー");
+                                        Log.d(TAG, "店名取得エラー");
                                     }
                                 } else {
                                     Log.d(TAG, "失敗する ", task.getException());
                                 }
-                            }
-                        });
-
-                        //LinearLayoutにClickListner実装
-                        ViewGroup vg = (ViewGroup)storenamelist.get(count).getParent();
-                        vg.setClickable(true);
-                        vg.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                //コメント詳細画面に遷移
-                                storenamelist.get(num).setText("aaaaaaaaaaaaaaaaaaaaaa");
-                                String commentID = document.getId();
-
                             }
                         });
 
@@ -602,7 +605,9 @@ public class Database2 {
         });
     }
 
-    //順番
+    //トップ画面の新着10件取り出すよう
+    //新着10件を押下時
+    //コメント詳細画面に遷移する
     //1:写真          店名、テキスト、日時
     //2:アイコン      性 名
     //3: 店名
@@ -620,17 +625,21 @@ public class Database2 {
                     for (final QueryDocumentSnapshot document : task.getResult()) {
                         //何番目の処理か分かるようにする変数
                         final int num = count;
+                        final Database2Value database2Value = new Database2Value();
 
                         //日時
                         Log.d(TAG, document.get("good") + " => " + new SimpleDateFormat("yyyy/MM/dd").format(document.getTimestamp("time").toDate()));
-                        timelist.get(count).setText(new SimpleDateFormat("yyyy/MM/dd").format(document.getTimestamp("time").toDate()));
+                        timelist.get(num).setText(new SimpleDateFormat("yyyy/MM/dd").format(document.getTimestamp("time").toDate()));
+                        database2Value.setDate(new SimpleDateFormat("yyyy/MM/dd").format(document.getTimestamp("time").toDate()));
 
                         //テキスト
                         Log.d(TAG, "テキスト:" + document.get("text").toString());
-                        textlist.get(count).setText(document.get("text").toString());
+                        textlist.get(num).setText(document.get("text").toString());
+                        database2Value.setText(document.get("text").toString());
 
                         //写真
                         List<String> photolist = (List<String>) document.get("photolist");
+                        database2Value.setPhotolist((List<String>) document.get("photolist"));
                         for(int i = 0; i < 2; i++) {
                             try {
                                 photocount++;
@@ -642,6 +651,7 @@ public class Database2 {
                         }
 //
                         //アイコンと名前
+                        //users表へ問い合わせ
                         db.collection("users").document(document.get("poster").toString()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -653,8 +663,49 @@ public class Database2 {
                                         firstnamelist.get(num).setText(d.get("firstname").toString());
                                         lastnamelist.get(num).setText(d.get("lastname").toString());
                                         GlideApp.with(context).load(d.get("icon")).circleCrop().into(iconlist.get(num));
+                                        database2Value.setFirstname(d.get("firstname").toString());
+                                        database2Value.setLastname(d.get("lastname").toString());
+                                        database2Value.setIcon(d.get("icon").toString());
+
+                                        //店名
+                                        //stores表へ問い合わせ
+                                        db.collection("stores").document(document.get("store").toString()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                if (task.isSuccessful()) {
+                                                    DocumentSnapshot d= task.getResult();
+                                                    if (d.exists()) {
+                                                        Log.d(TAG, "店名:" + d.get("name").toString());
+                                                        storenamelist.get(num).setText(d.get("name").toString());
+                                                        database2Value.setStoreName(d.get("name").toString());
+
+                                                        database2Value.setStoreID(d.getId());
+
+                                                        //コメントId
+                                                        database2Value.setCommentID(document.getId());
+                                                        //LinearLayoutにClickListner実装
+                                                        ViewGroup vg = (ViewGroup)textlist.get(num).getParent();
+                                                        vg.setOnClickListener(new View.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(View v) {
+                                                                //コメント詳細画面に遷移
+                                                                //必要なのはコメントID
+                                                                textlist.get(num).setText(database2Value.getCommentID());
+
+                                                                //呼び出し
+                                                                commentDetails(database2Value);
+                                                            }
+                                                        });
+                                                    } else {
+                                                        Log.d(TAG, "店名エラー");
+                                                    }
+                                                } else {
+                                                    Log.d(TAG, "失敗する ", task.getException());
+                                                }
+                                            }
+                                        });
                                     } else {
-                                        Log.d(TAG, "そのような文書はありません");
+                                        Log.d(TAG, "名前とアイコンエラー");
                                     }
                                 } else {
                                     Log.d(TAG, "失敗する ", task.getException());
@@ -662,32 +713,9 @@ public class Database2 {
                             }
                         });
 
-                        //店名
-                        db.collection("stores").document(document.get("store").toString()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    DocumentSnapshot d= task.getResult();
-                                    if (d.exists()) {
-                                        Log.d(TAG, "店名:" + d.get("name").toString());
-                                        storenamelist.get(num).setText(d.get("name").toString());
-                                    } else {
-                                        Log.d(TAG, "そのような文書はありません");
-                                    }
-                                } else {
-                                    Log.d(TAG, "失敗する ", task.getException());
-                                }
-                            }
-                        });
 
-                        //LinearLayoutにClickListner実装
-                        ViewGroup vg = (ViewGroup)textlist.get(count).getParent();
-                        vg.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                //コメント詳細画面に遷移
-                            }
-                        });
+
+
 
                         count++;
                     }
@@ -700,7 +728,10 @@ public class Database2 {
 
 
     //検索結果表示画面用
-    //1.店名, 昼予算、　夜予算
+    //現状10件までしか表示できないのが問題
+    //既にあるlayoutに埋め込む形ではなく
+    //viewを生成する方法にしたほうが良い
+    //1.店名, (昼予算/夜予算 未実装)
     //2.写真
     public void search(final Context context, final String searchText, final String searchGenre, final List<TextView> storeNameList, final List<ImageView> imgList) {
 
@@ -713,11 +744,13 @@ public class Database2 {
                     if (task.isSuccessful()) {
                         for (final QueryDocumentSnapshot document : task.getResult()) {
                             if (document.get("name").toString().contains(searchText) && document.get("genre").toString().contains(searchGenre)) {
-                                //店名
-                                storeNameList.get(count).setText(document.get("name").toString());
-                                String storeId = document.getId();
+                                //何番目の処理か判断するための変数
+                                final int num = count;
 
-                                final int photocount = count * 2;
+                                //店名
+                                storeNameList.get(num).setText(document.get("name").toString());
+
+                                final int photocount = num * 2;
                                 //写真
                                 db.collection("comments").whereEqualTo("store", document.getId()).get()
                                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -742,6 +775,22 @@ public class Database2 {
                                                 }
                                             }
                                         });
+
+
+                                //店舗Id
+                                final String storeID = document.getId();
+
+                                ViewGroup vg = (ViewGroup)storeNameList.get(num).getParent();
+                                vg.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        //店舗詳細画面に遷移
+                                        //必要なのは店舗ID
+                                        storeNameList.get(num).setText(storeID);
+                                        storeDetails(storeID);
+                                    }
+                                });
+
                                 count++;
 
                             }
@@ -749,10 +798,146 @@ public class Database2 {
                     }
                 }
 
+                //検索結果が10件未満だった場合のlayout削除
                 while(count < 10) {
                     ViewGroup vg = (ViewGroup)storeNameList.get(count).getParent();
                     vg.removeAllViews();
                     count++;
+                }
+            }
+        });
+
+    }
+
+    //コメント詳細画面用
+    public void commentDetails(final Database2Value database2Value) {
+        View view =MyApplication.getInflater().inflate(R.layout.activity_postscreen, MyApplication.getFrameLayout(), false);
+
+        //アイコン
+        ImageView resulticon = view.findViewById(R.id.resulticon);
+        GlideApp.with(MyApplication.getAppContext()).load(database2Value.getIcon()).into(resulticon);
+
+        //性
+        TextView resultfirstname = view.findViewById(R.id.resultfirstname);
+        resultfirstname.setText(database2Value.getFirstname());
+
+        //名
+        TextView resultlastname = view.findViewById(R.id.resultlastname);
+        resultlastname.setText(database2Value.getLastname());
+
+        //投稿日
+        TextView resultTime = view.findViewById(R.id.resultTime);
+        resultTime.setText(database2Value.getDate());
+
+        //店名
+        Button resultstorename = view.findViewById(R.id.resultstorename);
+        resultstorename.setText(database2Value.getStoreName());
+
+        resultstorename.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                storeDetails(database2Value.getStoreID());
+            }
+        });
+
+        //投稿の説明
+        TextView resultText = view.findViewById(R.id.resultText);
+        resultText.setText(database2Value.getText());
+
+        //写真
+        ImageView resultImage01 = view.findViewById(R.id.resultImage01);
+        GlideApp.with(MyApplication.getAppContext()).load(database2Value.getPhotolist().get(0)).into(resultImage01);
+        //2枚目入れてないので例外処理必要
+        ImageView resultImage02 = view.findViewById(R.id.resultImage02);
+
+
+
+        MyApplication.getFrameLayout().removeAllViews();
+        MyApplication.getFrameLayout().addView(view);
+    }
+
+    //店舗詳細画面
+    //写真(全部), 店名, 料金, ジャンル, 住所, 営業時間, 定休日, 電話番号, その店に対するコメント
+    public void storeDetails(String storeID) {
+        final View view =MyApplication.getInflater().inflate(R.layout.storedetails_layout, MyApplication.getFrameLayout(), false);
+
+        //写真(全部)
+        //その店に対するコメント
+        //コメント表への問い合わせ
+        db.collection("comments").whereEqualTo("store", storeID).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            //画面上部のscrollviewに表示する写真
+            List<String> photoAll = new ArrayList<>();
+
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    int count = 0;
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        //写真
+                        List<String> photolist = (List<String>) document.get("photolist");
+                        for(int i = 0; i < 2; i++) {
+                            try {
+                                Log.d(TAG, "画像:" + photolist.get(i));
+                                photoAll.add(photolist.get(i));
+//                                GlideApp.with(context).load(photolist.get(i)).into(imglist.get(photocount));
+                            } catch (NullPointerException | IndexOutOfBoundsException e) {
+//                                imglist.get(photocount).setVisibility(View.GONE);
+                            }
+                        }
+                    }
+
+                    ImageView imageView = (ImageView)view.findViewById(R.id.imageView);
+                    ImageView imageView2 = (ImageView)view.findViewById(R.id.imageView2);
+                    ImageView imageView3 = (ImageView)view.findViewById(R.id.imageView3);
+                    ImageView imageView4 = (ImageView)view.findViewById(R.id.imageView4);
+                    ImageView imageView5 = (ImageView)view.findViewById(R.id.imageView5);
+                    ImageView imageView6 = (ImageView)view.findViewById(R.id.imageView6);
+                    ImageView imageView7 = (ImageView)view.findViewById(R.id.imageView7);
+                    ImageView imageView8 = (ImageView)view.findViewById(R.id.imageView8);
+
+                    List<ImageView> imageViews = Arrays.asList(imageView, imageView2, imageView3, imageView4, imageView5, imageView6, imageView7, imageView8);
+
+                    for(int i = 0; i < 8; i++) {
+                        try {
+                            Log.d(TAG, "画像aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:" + photoAll.get(i));
+                            GlideApp.with(MyApplication.getAppContext()).load(photoAll.get(i)).into(imageViews.get(i));
+                        } catch (NullPointerException | IndexOutOfBoundsException e) {
+                            Log.d(TAG, "走ってない");
+                            imageViews.get(i).setVisibility(View.GONE);
+                        }
+                    }
+                } else {
+                }
+            }
+        });
+
+        Log.d(TAG, "daaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:" + storeID);
+
+        //店名, 料金, ジャンル, 住所, 営業時間, 定休日, 電話番号
+        DocumentReference storeRef =  db.collection("stores").document(storeID);
+
+        storeRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        //店名
+                        Log.d(TAG, "とれてるううううううううううううう:" + document.get("name").toString());
+                        ((TextView)view.findViewById(R.id.textView1)).setText(document.get("name").toString());
+
+                        //料金(昼, 夜)
+                        ((TextView)view.findViewById(R.id.textView2)).setText(document.get("dinner budget").toString() + "～");
+                        ((TextView)view.findViewById(R.id.textView3)).setText(document.get("lunch budget").toString() + "～");
+
+                        //ジャンル
+                        //画面下に部品が重なって見えていない
+                    }
+
+                    MyApplication.getFrameLayout().removeAllViews();
+                    MyApplication.getFrameLayout().addView(view);
+                } else {
+                    Log.d(TAG, "とれてなあああああああああああああああああああああああい");
                 }
             }
         });

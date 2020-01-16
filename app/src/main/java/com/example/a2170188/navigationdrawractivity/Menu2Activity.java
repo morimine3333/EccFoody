@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-public class Menu2Activity extends AppCompatActivity {
+public class Menu2Activity {
     FrameLayout frame;
     View view;
 

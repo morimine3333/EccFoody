@@ -8,6 +8,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 
 //https://qiita.com/ksugawara61/items/31e72681fff7d6d390e9
+//どこからでもcontexなどを取れるようにするソースファイル
 
 public class MyApplication extends Application {
     private static Context context;

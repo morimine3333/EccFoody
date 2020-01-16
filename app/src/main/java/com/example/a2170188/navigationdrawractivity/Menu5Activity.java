@@ -20,16 +20,13 @@ import com.google.firebase.auth.FirebaseUser;
 import java.lang.ref.WeakReference;
 
 public class Menu5Activity{
-
-    FrameLayout frame;
     View view;
 
     private static final String TAG = "Menu1Activity";
 
     Menu5Activity() {}
 
-    Menu5Activity(FrameLayout frame, View view) {
-        this.frame = frame;
+    Menu5Activity(View view) {
         this.view = view;
     }
 

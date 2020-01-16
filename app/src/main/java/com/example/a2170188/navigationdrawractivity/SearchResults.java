@@ -14,6 +14,7 @@ import android.widget.TextView;
 import java.util.Arrays;
 import java.util.List;
 
+//検索結果画面
 public class SearchResults extends AppCompatActivity {
     private String text;
     private String genre;

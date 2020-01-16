@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+//ログイン画面
 public class loginActivity extends AppCompatActivity {
 
     //タグの定数を定義 使っているクラス名?

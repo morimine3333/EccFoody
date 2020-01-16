@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import io.opencensus.internal.StringUtils;
 
+//新規登録画面
 public class registerActivity extends AppCompatActivity {
 
     private static final String TAG = "registerActivity";
@@ -57,7 +58,8 @@ public class registerActivity extends AppCompatActivity {
                                 // サインインに成功し、サインインしたユーザーの情報でUIを更新する
                                 Toast.makeText(registerActivity.this, "作成成功",
                                         Toast.LENGTH_SHORT).show();
-                                FirebaseUser user = mAuth.getCurrentUser();
+//                                FirebaseUser user = mAuth.getCurrentUser();
+                                finish();
                             } else {
                                 //サインインに失敗した場合、ユーザーにメッセージを表示します。
                                 Toast.makeText(registerActivity.this, "作成失敗",

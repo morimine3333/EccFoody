@@ -7,9 +7,10 @@
     <string name="koment">コメント</string>
     <string-array name="list">
         <item>日本料理</item>
-        <item>韓国</item>
-        <item>中国</item>
-        <item>タイ</item>
-        <item>ベトナム</item>
+        <item>韓国料理</item>
+        <item>中華料理</item>
+        <item>イタリア料理</item>
+        <item>ベトナム料理</item>
+        <item>タイ料理</item>
     </string-array>
 </resources>
