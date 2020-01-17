@@ -9,6 +9,15 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- camera, gallery -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
         android:name= "com.example.a2170188.navigationdrawractivity.MyApplication"
@@ -42,7 +51,13 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".loginActivity" />
         <activity android:name=".registerActivity" />
+        <activity android:name=".GetImageActivity"/>
+        <activity android:name=".GetCropImageActivity"/>
         <activity android:name=".IntroActivity">
+
+
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
