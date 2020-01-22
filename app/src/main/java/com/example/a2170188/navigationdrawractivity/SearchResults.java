@@ -33,6 +33,7 @@ public class SearchResults extends AppCompatActivity {
         FrameLayout frame = MyApplication.getFrameLayout();
         View view = inflater.inflate(R.layout.activity_searchresults, frame, false);
 
+
         TextView textView =  view.findViewById(R.id.searchTextView1);
         textView.setText(genre);
 

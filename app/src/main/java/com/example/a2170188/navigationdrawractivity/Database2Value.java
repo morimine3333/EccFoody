@@ -1,3 +1,5 @@
+//作成者:盛
+
 package com.example.a2170188.navigationdrawractivity;
 
 import java.util.List;
@@ -15,6 +17,9 @@ class Database2Value {
     private String lastname;
     private String icon;
     private String storeName;
+    private Boolean goodFlg;
+    private Boolean heartFlg;
+    private String poster;
 
     void setCommentID(String commentID) {
         this.commentID = commentID;
@@ -61,7 +66,19 @@ class Database2Value {
         this.storeName = storeName;
     }
 
-     int getNum() {
+    public void setGoodFlg(Boolean goodFlg) {
+        this.goodFlg = goodFlg;
+    }
+
+    public void setHeartFlg(Boolean heartFlg) {
+        this.heartFlg = heartFlg;
+    }
+
+    public void setPoster(String poster) {
+        this.poster = poster;
+    }
+
+    int getNum() {
         return num;
     }
 
@@ -103,5 +120,17 @@ class Database2Value {
 
      String getUserID() {
         return userID;
+    }
+
+    public Boolean getGoodFlg() {
+        return goodFlg;
+    }
+
+    public Boolean getHeartFlg() {
+        return heartFlg;
+    }
+
+    public String getPoster() {
+        return poster;
     }
 }

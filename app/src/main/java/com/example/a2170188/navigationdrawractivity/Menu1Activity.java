@@ -1,6 +1,11 @@
 package com.example.a2170188.navigationdrawractivity;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewParent;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -300,6 +305,28 @@ public class Menu1Activity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        //Edittextのリアルタイム検知
+        EditText edittext = view.findViewById(R.id.text);
+        edittext.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //テキスト変更前
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //テキスト変更中
+                //画面操作無効化
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                //テキスト変更後
+                //画面操作有効化
 
             }
         });

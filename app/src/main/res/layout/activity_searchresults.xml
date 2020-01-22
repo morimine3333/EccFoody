@@ -38,7 +38,6 @@
                     android:id="@+id/searchstorename01"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Title"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
 
@@ -83,7 +82,6 @@
                     android:id="@+id/searchstorename02"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Title"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
 
@@ -129,7 +127,6 @@
                     android:id="@+id/searchstorename03"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Title"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
 
@@ -174,7 +171,6 @@
                     android:id="@+id/searchstorename04"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Title"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
 
@@ -219,7 +215,6 @@
                     android:id="@+id/searchstorename05"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Title"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
 
@@ -265,7 +260,6 @@
                     android:id="@+id/searchstorename06"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Title"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
 
@@ -310,7 +304,6 @@
                     android:id="@+id/searchstorename07"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Title"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
 
@@ -355,7 +348,6 @@
                     android:id="@+id/searchstorename08"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Title"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
 
@@ -400,7 +392,6 @@
                     android:id="@+id/searchstorename09"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Title"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
 
@@ -444,7 +435,6 @@
                     android:id="@+id/searchstorename10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Title"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
 

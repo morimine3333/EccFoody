@@ -1,3 +1,5 @@
+//作成者:盛
+
 package com.example.a2170188.navigationdrawractivity;
 
 import android.os.Bundle;
@@ -22,7 +24,6 @@ public class registerActivity extends AppCompatActivity {
     private static final String TAG = "registerActivity";
 
     private FirebaseAuth mAuth;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -49,7 +50,12 @@ public class registerActivity extends AppCompatActivity {
         String password = passwordText.getText().toString().trim();
 
         //https://qiita.com/HALU5071/items/640652de9e31d4bbdbeb
-        if(!email.isEmpty() && !password.isEmpty()) {
+        //判定
+        if(email.isEmpty()) {
+            Toast.makeText(registerActivity.this, "メールアドレスを入力してください。", Toast.LENGTH_LONG).show();
+        } else if(password.isEmpty()) {
+            Toast.makeText(registerActivity.this, "パスワードを入力してください。", Toast.LENGTH_LONG).show();
+        } else {
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -67,11 +73,6 @@ public class registerActivity extends AppCompatActivity {
                             }
                         }
                     });
-        } else {
-            Toast.makeText(registerActivity.this, "入力不備",
-                    Toast.LENGTH_SHORT).show();
         }
-
-
     }
 }
