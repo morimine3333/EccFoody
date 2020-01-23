@@ -42,6 +42,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".loginActivity" />
         <activity android:name=".registerActivity" />
+        <activity android:name=".NewStore"/>
         <activity android:name=".IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
