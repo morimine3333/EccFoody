@@ -18,6 +18,7 @@ public class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.MyViewHolder> {
     private String[] mDataset;
     private int[] imageViews;
 
+    //staticインナークラス
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         public CardView mCardView;
         public TextView mTextView;

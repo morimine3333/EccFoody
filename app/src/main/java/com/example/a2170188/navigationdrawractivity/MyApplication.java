@@ -24,6 +24,7 @@ public class MyApplication extends Application {
     private static Deque<View> deque = new ArrayDeque<>();
     private static InputMethodManager inputMethodManager;
     private static Resources resources;
+    private static MainActivity mainActivity;
 
 
     /**
@@ -63,6 +64,10 @@ public class MyApplication extends Application {
         resources = MyApplication.getAppContext().getResources();
     }
 
+    public static void setMainActivity(MainActivity mainActivityx) {
+        mainActivity = mainActivityx;
+    }
+
     public static LayoutInflater getInflater() {
         return MyApplication.inflater;
     }
@@ -86,5 +91,9 @@ public class MyApplication extends Application {
     //getResourcesがオーバーライド判定くらう
     public static Resources getR() {
         return resources;
+    }
+
+    public static MainActivity getMainActivity() {
+        return mainActivity;
     }
 }

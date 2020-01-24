@@ -129,6 +129,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+
         //アプリ起動時の認証処理
         // Firebase Authを初期化する
         mAuth = FirebaseAuth.getInstance();
@@ -154,6 +156,10 @@ public class MainActivity extends AppCompatActivity {
         //enter押したらキーボード閉じる処理用の変数
         MyApplication.setInputMethodManager((InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE));
 
+        MyApplication.setMainActivity(this);
+
+
+
         //アプリ起動時の画面遷移(ホーム画面)
         changeView(0);
     }
@@ -173,40 +179,47 @@ public class MainActivity extends AppCompatActivity {
         switch (index) {
             case 0:
 //                //応急措置
-//                if(view0 == null) {
-//                    //トップ画面
-//                    //更新ボタン必要
-//                    view = inflater.inflate(R.layout.activity_menu1, frame, false);
-//                    Menu1Activity menu1Activity = new Menu1Activity(view);
-//                    menu1Activity.change();
-//                    view0 = view;
-//                    break;
-//                } else {
-//                    view = view0;
-//                    break;
-//                }
+                if(view0 == null) {
+                    //トップ画面
+                    //更新ボタン必要
+                    view = inflater.inflate(R.layout.activity_menu1, frame, false);
+                    Menu1Activity menu1Activity = new Menu1Activity(view);
+                    menu1Activity.change();
+                    view0 = view;
+                    break;
+                } else {
+                    view = view0;
+                    break;
+                }
 
-                view = inflater.inflate(R.layout.activity_menu1, frame, false);
-                Menu1Activity menu1Activity = new Menu1Activity(view);
-                menu1Activity.change();
-                view0 = view;
-                break;
+//                view = inflater.inflate(R.layout.activity_menu1, frame, false);
+//                Menu1Activity menu1Activity = new Menu1Activity(view);
+//                menu1Activity.change();
+//                view0 = view;
+//                break;
             case 1:
-//                //応急措置
-//                if(view1 == null) {
-//                    //マイリスト画面
-//                    //更新ボタン必要
-//                    view = inflater.inflate(R.layout.activity_menu2, frame, false);
-//                    view1 = view;
-//                    break;
-//                } else {
-//                    view = view1;
-//                    break;
-//                }
+                //応急措置
+                if(view1 == null) {
+                    //マイリスト画面
+                    //更新ボタン必要
+                    view = inflater.inflate(R.layout.activity_menu2, frame, false);
+                    Menu2Activity menu2Activity = new Menu2Activity();
+                    menu2Activity.change(view);
+                    view1 = view;
+                    break;
+                } else {
+                    view = view1;
+                    break;
+                }
 
-                view = inflater.inflate(R.layout.activity_menu2, frame, false);
-                view1 = view;
-                break;
+//                view = inflater.inflate(R.layout.activity_menu2, frame, false);
+////                Intent intent = new Intent(this, Menu2Activity.class);
+////                startActivity(intent);
+//
+//                Menu2Activity menu2Activity = new Menu2Activity();
+//                menu2Activity.change(view);
+//                view1 = view;
+//                break;
             case 2:
                 //投稿画面
                 view = inflater.inflate(R.layout.activity_menu3, frame, false);

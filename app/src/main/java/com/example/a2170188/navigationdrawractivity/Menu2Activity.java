@@ -1,50 +1,64 @@
 package com.example.a2170188.navigationdrawractivity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.google.android.material.tabs.TabLayout;
+
 public class Menu2Activity {
-    FrameLayout frame;
-    View view;
+    private CharSequence[] tabTitle = {"行った", "行きたい", "フォロー", "フォロワー"};
+    private static final String TAG = "Menu2Activity";
 
-    Menu2Activity() {
+    public void change(View view) {
+        //https://firespeed.org/diary.php?diary=kenz-1426
+        //https://wasnot.hatenablog.com/entry/2013/04/20/220534
+        //2回目以降はそもそもgetItemが動かない
+        //MyApplication.getMainActivity().getSupportFragmentManager()
+//        this.getChildFragmentManager();
+        FragmentPagerAdapter adapter = new FragmentPagerAdapter(MyApplication.getMainActivity().getSupportFragmentManager()) {
+            @Override
+            public Fragment getItem(int position) {
+                Log.d(TAG, "getItem: " + position);
 
+                switch (position) {
+                    case 0:
+                        return new Main1Fragment();
+                    case 1:
+                        return new Main2Fragment();
+                    case 2:
+                        return new Main3Fragment();
+                    case 3:
+                        return new Main4Fragment();
+                    default:
+                        return null;
+                }
+            }
+
+            @Override
+            public CharSequence getPageTitle(int position) {
+                return tabTitle[position];
+            }
+
+            @Override
+            public int getCount() {
+                return tabTitle.length;
+            }
+        };
+
+        ViewPager viewPager = view.findViewById(R.id.viewPager);
+        viewPager.setOffscreenPageLimit(tabTitle.length);
+        viewPager.setAdapter(adapter);
+        TabLayout tabLayout = view.findViewById(R.id.tabLayout);
+        tabLayout.setupWithViewPager(viewPager);
     }
-
-    Menu2Activity(FrameLayout frame, View view) {
-        this.frame = frame;
-        this.view = view;
-    }
-
-    public void change() {
-        TextView textView = view.findViewById(R.id.textView2);
-        textView.setText("fasfdsa");
-    }
-
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-////        setContentView(R.layout.activity_menu2);
-//    }
 }
-
-//public class Menu2Activity {
-//    FrameLayout frame;
-//    View view;
-//
-//
-//    public Menu2Activity(FrameLayout frame, View view) {
-//        TextView textView = view.findViewById(R.id.textView2);
-//        textView.setText("aaaaa");
-//        frame.addView(view);
-//    }
-//
-//    public View getView() {
-//        return view;
-//    }
-//}

@@ -7,6 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +47,13 @@ public class Main1Fragment extends Fragment {
         //1.current.userからお気に入りリスト取得
         //2.お気に入りリスト分だけ中で繰り返す
         Database2 db2 = new Database2("dafsdf");
-        db2.favorite("BlUDiAXqh9hNtFp58ZQ475n3rGJ3", rv);
+
+        // Initialize Firebase Auth
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+
+
+        db2.favorite(user.getUid(), rv);
 
         return rootView;
     }

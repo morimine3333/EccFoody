@@ -20,6 +20,7 @@ class Database2Value {
     private Boolean goodFlg;
     private Boolean heartFlg;
     private String poster;
+    private int naibu;
 
     void setCommentID(String commentID) {
         this.commentID = commentID;
@@ -78,6 +79,10 @@ class Database2Value {
         this.poster = poster;
     }
 
+    public void setNaibu(int naibu) {
+        this.naibu = naibu;
+    }
+
     int getNum() {
         return num;
     }
@@ -132,5 +137,13 @@ class Database2Value {
 
     public String getPoster() {
         return poster;
+    }
+
+    public int getNaibu() {
+        return naibu;
+    }
+
+    public void addNaibu() {
+        naibu += 1;
     }
 }

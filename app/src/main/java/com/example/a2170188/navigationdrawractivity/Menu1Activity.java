@@ -18,7 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 
 //トップ画面/ホーム画面
-public class Menu1Activity {
+public class Menu1Activity{
     View view;
 
     private static final String TAG = "Menu1Activity";

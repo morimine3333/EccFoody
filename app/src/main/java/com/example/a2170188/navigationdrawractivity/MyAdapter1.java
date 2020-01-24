@@ -21,6 +21,7 @@ public class MyAdapter1 extends RecyclerView.Adapter<MyAdapter1.MyViewHolder>{
 
     private Context context;
 
+    //値
     private List<String> storeNames;
     private List<String> storeImgs;
     private List<String> lunchBudgets;
@@ -30,6 +31,7 @@ public class MyAdapter1 extends RecyclerView.Adapter<MyAdapter1.MyViewHolder>{
 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
+        //置く場所
         public CardView mCardView;
         public TextView storeName;
         public ImageView storeImg;
@@ -76,10 +78,11 @@ public class MyAdapter1 extends RecyclerView.Adapter<MyAdapter1.MyViewHolder>{
     public void onBindViewHolder(MyAdapter1.MyViewHolder holder, final int position){
         //View view = View.inflate(context, R.layout.layout_sample,root);
         holder.storeName.setText(storeNames.get(position));
-        holder.storeImg.setImageResource(R.drawable.img_1);
-        holder.lunchIcon.setImageResource(R.drawable.img_1);
+
+//        holder.storeImg.setImageResource(R.drawable.img_1);
+        holder.lunchIcon.setImageResource(R.drawable.sun);
         holder.lunchBudget.setText(lunchBudgets.get(position));
-        holder.dinnerIcon.setImageResource(R.drawable.img_1);
+        holder.dinnerIcon.setImageResource(R.drawable.nightmode);
         holder.dinnerBudget.setText(dinnerBudgets.get(position));
         holder.genre.setText(genres.get(position));
 
@@ -97,6 +100,7 @@ public class MyAdapter1 extends RecyclerView.Adapter<MyAdapter1.MyViewHolder>{
 //
 //        holder.imageView.setImageResource(imageViews[position]);
 
+        GlideApp.with(MyApplication.getAppContext()).load(storeImgs.get(position)).into(holder.storeImg);
 //        GlideApp.(holder.storeImg)
     }
 

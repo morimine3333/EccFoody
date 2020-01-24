@@ -3,6 +3,7 @@
 package com.example.a2170188.navigationdrawractivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +14,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class Main4Fragment extends Fragment {
+    private static final String TAG = "Main4Fragment";
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
+        //ここが走っていない
+        Log.d(TAG, "yeaaaaaaaaaaaaaaaaaaaaaaa");
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         RecyclerView rv = (RecyclerView) rootView.findViewById(R.id.rv_recycler_view);
         rv.setHasFixedSize(true);
