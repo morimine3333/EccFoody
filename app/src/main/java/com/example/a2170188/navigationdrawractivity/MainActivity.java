@@ -1,4 +1,5 @@
-//作成者：金在愚
+//作成者:金,盛
+
 package com.example.a2170188.navigationdrawractivity;
 
 
