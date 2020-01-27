@@ -230,7 +230,8 @@ public class MainActivity extends AppCompatActivity {
                 view.findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        Intent intent = new Intent(MyApplication.getAppContext(),GetImageActivity.class);
+                        MyApplication.getAppContext().startActivity(intent);
                     }
                 });
 
