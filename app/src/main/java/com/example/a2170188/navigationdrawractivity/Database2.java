@@ -1242,64 +1242,71 @@ public class Database2 {
                 //お気に入りリストの数だけお店表へ問い合わせ
                 //???????????????????????????????????????   お気に入り0のときエラー吐きそう
                 //??????????????????????????? 店の写真をコメントから持ってくるのめんどくさい
-                for(final String storeDocumentPath: favorites) {
+                try {
+                    for (final String storeDocumentPath : favorites) {
 
-                    db.collection("stores").document(storeDocumentPath).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        db.collection("stores").document(storeDocumentPath).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
 
-                        @Override
-                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                            DocumentSnapshot documentSnapshot1 = task.getResult();
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                DocumentSnapshot documentSnapshot1 = task.getResult();
 
-                            storeNames.add(documentSnapshot1.get("name").toString());
-                            lunchBudgets.add("～" + documentSnapshot1.get("lunch budget").toString() + "円");
-                            dinnerBudgets.add("～" + documentSnapshot1.get("dinner budget").toString() + "円");
-                            genres.add(documentSnapshot1.get("genre").toString());
+                                storeNames.add(documentSnapshot1.get("name").toString());
+                                lunchBudgets.add("～" + documentSnapshot1.get("lunch budget").toString() + "円");
+                                dinnerBudgets.add("～" + documentSnapshot1.get("dinner budget").toString() + "円");
+                                genres.add(documentSnapshot1.get("genre").toString());
 
 
-                            final int count2 = count;
+                                final int count2 = count;
 
 //                            コメント表への問い合わせ
-                            //db.collection("comments").whereEqualTo("store", storeDocumentPath).limit(1).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            db.collection("comments").whereEqualTo("store", storeDocumentPath).limit(1).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                //db.collection("comments").whereEqualTo("store", storeDocumentPath).limit(1).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                db.collection("comments").whereEqualTo("store", storeDocumentPath).limit(1).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
-                                    for(DocumentSnapshot documentSnapshot2: task.getResult()) {
-                                        //???????????????????????????????          写真ないときどうするねん
-                                        List<String> photolist = (List<String>)documentSnapshot2.get("photolist");
-                                       try {
-                                           images.set(count2 ,photolist.get(0));
-                                           Log.d("yeaaaaaaaaaaaaaaaaa", images.get(count2));
+                                        for (DocumentSnapshot documentSnapshot2 : task.getResult()) {
+                                            //???????????????????????????????          写真ないときどうするねん
+                                            List<String> photolist = (List<String>) documentSnapshot2.get("photolist");
+                                            try {
+                                                images.set(count2, photolist.get(0));
+                                                Log.d("yeaaaaaaaaaaaaaaaaa", images.get(count2));
 //                                           Log.d("aaaaaaaaaaaaaa", String.valueOf(count2));
-                                           database2Value.addNaibu();
+                                                database2Value.addNaibu();
 
-                                           if(favorites.size() == database2Value.getNaibu()) {
-                                               MyAdapter1 adapter = new MyAdapter1(storeNames, images, lunchBudgets, dinnerBudgets, genres);
-                                               rv.setAdapter(adapter);
-                                               count = 0;
-                                           }
-                                       } catch (NullPointerException | IndexOutOfBoundsException e) {
-                                           Log.d("yeaaaaaaaaaaaaaaaaa", "とれてない");
+                                                if (favorites.size() == database2Value.getNaibu()) {
+                                                    MyAdapter1 adapter = new MyAdapter1(storeNames, images, lunchBudgets, dinnerBudgets, genres);
+                                                    rv.setAdapter(adapter);
+                                                    count = 0;
+                                                }
+                                            } catch (NullPointerException | IndexOutOfBoundsException e) {
+                                                Log.d("yeaaaaaaaaaaaaaaaaa", "とれてない");
+                                                break;
+                                            }
                                             break;
-                                       }
-                                        break;
+                                        }
                                     }
+                                });
+
+                                count++;
+
+                                if (favorites.size() == count) {
+                                    MyAdapter1 adapter = new MyAdapter1(storeNames, images, lunchBudgets, dinnerBudgets, genres);
+                                    rv.setAdapter(adapter);
+                                    count = 0;
                                 }
-                            });
-
-                            count++;
-
-                            if(favorites.size() == count) {
-                                MyAdapter1 adapter = new MyAdapter1(storeNames, images, lunchBudgets, dinnerBudgets, genres);
-                                rv.setAdapter(adapter);
-                                count = 0;
                             }
-                        }
-                    });
+                        });
+                    }
+                } catch(RuntimeException re) {
+                    re.getMessage();
                 }
             }
         });
     }
 
     //行ったリスト
+    void went() {
+
+    }
 }

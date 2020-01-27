@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.google.android.material.tabs.TabLayout;
 
 public class Menu2Activity {
-    private CharSequence[] tabTitle = {"行った", "行きたい", "フォロー", "フォロワー"};
+    private CharSequence[] tabTitle = {"行きたい", "行った", "フォロー", "フォロワー"};
     private static final String TAG = "Menu2Activity";
 
     public void change(View view) {
