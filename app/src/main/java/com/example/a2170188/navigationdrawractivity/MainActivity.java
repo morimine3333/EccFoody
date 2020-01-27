@@ -1,3 +1,5 @@
+//作成者:金,盛
+
 package com.example.a2170188.navigationdrawractivity;
 
 
@@ -214,7 +216,7 @@ public class MainActivity extends AppCompatActivity {
 
 //                view = inflater.inflate(R.layout.activity_menu2, frame, false);
 ////                Intent intent = new Intent(this, Menu2Activity.class);
-////                startActivity(intent);
+//                startActivity(intent);
 //
 //                Menu2Activity menu2Activity = new Menu2Activity();
 //                menu2Activity.change(view);
@@ -236,7 +238,8 @@ public class MainActivity extends AppCompatActivity {
                 view.findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        Intent intent = new Intent(MyApplication.getAppContext(), NewStore.class);
+                        MyApplication.getAppContext().startActivity(intent);
                     }
                 });
                 break;
