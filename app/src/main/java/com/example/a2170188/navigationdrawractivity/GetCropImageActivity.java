@@ -19,7 +19,6 @@ import android.widget.Toast;
 import com.example.a2170188.navigationdrawractivity.util.ImageResizeUtils;
 import com.soundcloud.android.crop.Crop;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.File;
 import java.io.IOException;
@@ -59,13 +58,14 @@ public class GetCropImageActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (resultCode != RESULT_OK) {
             Toast.makeText(this, "취소 되었습니다.", Toast.LENGTH_SHORT).show();
 
-            if(tempFile != null) {
-                if(tempFile.exists()) {
+            if (tempFile != null) {
+                if (tempFile.exists()) {
 
-                    if(tempFile.delete()) {
+                    if (tempFile.delete()) {
                         Log.e(TAG, tempFile.getAbsolutePath() + " 삭제 성공");
                         tempFile = null;
                     } else {
@@ -98,7 +98,7 @@ public class GetCropImageActivity extends AppCompatActivity {
                 Uri photoUri = Uri.fromFile(tempFile);
                 Log.d(TAG, "takePhoto photoUri : " + photoUri);
 
-               cropImage(photoUri);
+                cropImage(photoUri);
 
                 break;
             }
@@ -213,7 +213,7 @@ public class GetCropImageActivity extends AppCompatActivity {
      */
     private void setImage() {
 
-        ImageView imageView = findViewById(R.id.imageVeiew);
+        ImageView imageView = findViewById(R.id.imageView);
 
         ImageResizeUtils.resizeFile(tempFile, tempFile, 1280, isCamera);
 

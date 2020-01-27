@@ -1,6 +1,9 @@
 package com.example.a2170188.navigationdrawractivity;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,27 +15,38 @@ import android.provider.MediaStore;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
+import io.opencensus.resource.Resource;
 
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.a2170188.navigationdrawractivity.util.ImageResizeUtils;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class GetImageActivity extends AppCompatActivity {
 
+    View view;
     private static final String TAG = "blackjin";
+
+    private Boolean isPermission = true;
 
     private static final int PICK_FROM_ALBUM = 1;
     private static final int PICK_FROM_CAMERA = 2;
 
-    private Boolean isCamera = false;
     private File tempFile;
 
     @Override
@@ -40,18 +54,27 @@ public class GetImageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_image);
 
+        tedPermission();
+
         findViewById(R.id.btnGallery).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goToAlbum();
+                // 권한 허용에 동의하지 않았을 경우 토스트를 띄웁니다.
+                if(isPermission) {
+                    goToAlbum();
+                } else {
+                    Toast.makeText(view.getContext(), getResources().getString(R.string.permission_2), Toast.LENGTH_LONG).show();
+                }
             }
         });
 
         findViewById(R.id.btnCamera).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                takePhoto();
-        }
+                // 권한 허용에 동의하지 않았을 경우 토스트를 띄웁니다.
+                if(isPermission)   takePhoto();
+                else Toast.makeText(view.getContext(), getResources().getString(R.string.permission_2), Toast.LENGTH_LONG).show();
+            }
         });
 
     }
@@ -59,7 +82,7 @@ public class GetImageActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode != RESULT_OK) {
+        if (resultCode != Activity.RESULT_OK) {
             Toast.makeText(this, "취소 되었습니다.", Toast.LENGTH_SHORT).show();
 
             if (tempFile != null) {
@@ -67,15 +90,8 @@ public class GetImageActivity extends AppCompatActivity {
                     if (tempFile.delete()) {
                         Log.e(TAG, tempFile.getAbsolutePath() + " 삭제 성공");
                         tempFile = null;
-                    } else {
-                        Log.e(TAG, "tempFile 삭제 실패");
                     }
-
-                } else {
-                    Log.e(TAG, "tempFile 존재하지 않음");
                 }
-            } else {
-                Log.e(TAG, "tempFile is null");
             }
 
             return;
@@ -127,7 +143,6 @@ public class GetImageActivity extends AppCompatActivity {
      *  앨범에서 이미지 가져오기
      */
     private void goToAlbum() {
-        isCamera = false;
 
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
@@ -139,7 +154,6 @@ public class GetImageActivity extends AppCompatActivity {
      *  카메라에서 이미지 가져오기
      */
     private void takePhoto() {
-        isCamera = true;
 
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
@@ -152,26 +166,9 @@ public class GetImageActivity extends AppCompatActivity {
         }
         if (tempFile != null) {
 
-            /**
-             *  안드로이드 OS 누가 버전 이후부터는 file:// URI 의 노출을 금지로 FileUriExposedException 발생
-             *  Uri 를 FileProvider 도 감싸 주어야 합니다.
-             *
-             *  참고 자료 http://programmar.tistory.com/4 , http://programmar.tistory.com/5
-             */
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-
-                Uri photoUri = FileProvider.getUriForFile(this,
-                        "com.tistory.black_jin0427.myimagesample.provider", tempFile);
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
-                startActivityForResult(intent, PICK_FROM_CAMERA);
-
-            } else {
-
-                Uri photoUri = Uri.fromFile(tempFile);
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
-                startActivityForResult(intent, PICK_FROM_CAMERA);
-
-            }
+            Uri photoUri = Uri.fromFile(tempFile);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+            startActivityForResult(intent, PICK_FROM_CAMERA);
         }
     }
 
@@ -184,11 +181,11 @@ public class GetImageActivity extends AppCompatActivity {
         String timeStamp = new SimpleDateFormat("HHmmss").format(new Date());
         String imageFileName = "blackJin_" + timeStamp + "_";
 
-        // 이미지가 저장될 파일 주소 ( blackJin )
+        // 이미지가 저장될 폴더 이름 ( blackJin )
         File storageDir = new File(Environment.getExternalStorageDirectory() + "/blackJin/");
         if (!storageDir.exists()) storageDir.mkdirs();
 
-        // 빈 파일 생성
+        // 파일 생성
         File image = File.createTempFile(imageFileName, ".jpg", storageDir);
         Log.d(TAG, "createImageFile : " + image.getAbsolutePath());
 
@@ -200,9 +197,7 @@ public class GetImageActivity extends AppCompatActivity {
      */
     private void setImage() {
 
-        ImageView imageView = findViewById(R.id.imageVeiew);
-
-        ImageResizeUtils.resizeFile(tempFile, tempFile, 1280, isCamera);
+        ImageView imageView = findViewById(R.id.imageView);
 
         BitmapFactory.Options options = new BitmapFactory.Options();
         Bitmap originalBm = BitmapFactory.decodeFile(tempFile.getAbsolutePath(), options);
@@ -217,6 +212,76 @@ public class GetImageActivity extends AppCompatActivity {
          */
         tempFile = null;
 
+    }
+
+    /**
+     *  권한 설정
+     */
+    private void tedPermission() {
+
+        PermissionListener permissionListener = new PermissionListener() {
+            @Override
+            public void onPermissionGranted() {
+                // 권한 요청 성공
+                isPermission = true;
+
+            }
+
+            @Override
+            public void onPermissionDenied(ArrayList<String> deniedPermissions) {
+                // 권한 요청 실패
+                isPermission = false;
+
+            }
+        };
+
+        TedPermission.with(this)
+                .setPermissionListener(permissionListener)
+                .setRationaleMessage(getResources().getString(R.string.permission_2))
+                .setDeniedMessage(getResources().getString(R.string.permission_1))
+                .setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
+                .check();
+
+        //ここから追加
+        Spinner spinner =(Spinner)findViewById(R.id.spinner);
+        int idx = spinner.getSelectedItemPosition();
+        String item = (String)spinner.getSelectedItem();
+//
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Spinner spinner = (Spinner)parent;
+                String item =(String)spinner.getSelectedItem();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        //検索結果画面へ遷移する
+        Button button = (Button) findViewById(R.id.send_button);
+        button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                MyApplication.getInputMethodManager().hideSoftInputFromWindow(v.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
+                //検索バーに入力されている文字を取得
+                EditText edittext = findViewById(R.id.text);
+                String text =  edittext.getText().toString();
+
+                //選択されているジャンルを取得
+                Spinner spinner = findViewById(R.id.spinner);
+                String genre =(String)spinner.getSelectedItem();
+
+                SearchResults searchResults = new SearchResults(text, genre);
+                searchResults.change();
+            }
+        });
+
+        //gomainButton
     }
 
 }
