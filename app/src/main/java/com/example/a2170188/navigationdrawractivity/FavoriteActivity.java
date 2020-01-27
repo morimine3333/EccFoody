@@ -1,31 +1,30 @@
+//作成者:盛
+
 package com.example.a2170188.navigationdrawractivity;
+
+import android.os.Bundle;
+import android.util.Log;
+
+import com.google.android.material.tabs.TabLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.TextView;
+//https://knowledge.moshimore.jp/entry/android_tablayout_viewpager
 
-import com.google.android.material.tabs.TabLayout;
+public class FavoriteActivity extends AppCompatActivity {
+    private CharSequence[] tabTitle = {"行った", "行きたい", "フォロー", "フォロワー"};
 
-public class Menu2Activity {
-    private CharSequence[] tabTitle = {"行きたい", "行った", "フォロー", "フォロワー"};
-    private static final String TAG = "Menu2Activity";
+    private static final String TAG = "FavoriteActivity";
 
-    public void change(View view) {
-        //https://firespeed.org/diary.php?diary=kenz-1426
-        //https://wasnot.hatenablog.com/entry/2013/04/20/220534
-        //2回目以降はそもそもgetItemが動かない
-        //MyApplication.getMainActivity().getSupportFragmentManager()
-//        this.getChildFragmentManager();
-        FragmentPagerAdapter adapter = new FragmentPagerAdapter(MyApplication.getMainActivity().getSupportFragmentManager()) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.favorite_main);
+
+        FragmentPagerAdapter adapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
                 Log.d(TAG, "getItem: " + position);
@@ -34,7 +33,7 @@ public class Menu2Activity {
                     case 0:
                         return new Main1Fragment();
                     case 1:
-                        return new Main2Fragment();
+                        return new Main3Fragment();
                     case 2:
                         return new Main3Fragment();
                     case 3:
@@ -54,11 +53,10 @@ public class Menu2Activity {
                 return tabTitle.length;
             }
         };
-
-        ViewPager viewPager = view.findViewById(R.id.viewPager);
+        ViewPager viewPager = findViewById(R.id.viewPager);
         viewPager.setOffscreenPageLimit(tabTitle.length);
         viewPager.setAdapter(adapter);
-        TabLayout tabLayout = view.findViewById(R.id.tabLayout);
+        TabLayout tabLayout = findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(viewPager);
     }
 }

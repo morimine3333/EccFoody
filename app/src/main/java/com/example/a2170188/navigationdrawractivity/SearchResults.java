@@ -14,6 +14,7 @@ import android.widget.TextView;
 import java.util.Arrays;
 import java.util.List;
 
+//検索結果画面
 public class SearchResults extends AppCompatActivity {
     private String text;
     private String genre;
@@ -31,6 +32,7 @@ public class SearchResults extends AppCompatActivity {
         LayoutInflater inflater = MyApplication.getInflater();
         FrameLayout frame = MyApplication.getFrameLayout();
         View view = inflater.inflate(R.layout.activity_searchresults, frame, false);
+
 
         TextView textView =  view.findViewById(R.id.searchTextView1);
         textView.setText(genre);

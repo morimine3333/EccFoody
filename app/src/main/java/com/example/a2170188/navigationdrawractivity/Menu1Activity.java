@@ -1,34 +1,24 @@
 package com.example.a2170188.navigationdrawractivity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Activity;
-import android.content.Context;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewParent;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-import java.lang.ref.WeakReference;
 import java.util.Arrays;
 import java.util.List;
 
-public class Menu1Activity {
-    FrameLayout frame;
+//トップ画面/ホーム画面
+public class Menu1Activity{
     View view;
 
     private static final String TAG = "Menu1Activity";
@@ -37,8 +27,7 @@ public class Menu1Activity {
 
     }
 
-    Menu1Activity(FrameLayout frame, View view) {
-        this.frame = frame;
+    Menu1Activity(View view) {
         this.view = view;
     }
 
@@ -305,7 +294,7 @@ public class Menu1Activity {
         Spinner spinner =(Spinner)view.findViewById(R.id.spinner);
         int idx = spinner.getSelectedItemPosition();
         String item = (String)spinner.getSelectedItem();
-//
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
@@ -319,13 +308,36 @@ public class Menu1Activity {
 
             }
         });
-//
+
+        //Edittextのリアルタイム検知
+        EditText edittext = view.findViewById(R.id.text);
+        edittext.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //テキスト変更前
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //テキスト変更中
+                //画面操作無効化
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                //テキスト変更後
+                //画面操作有効化
+
+            }
+        });
+
 
         //検索結果画面へ遷移する
         Button button = (Button) view.findViewById(R.id.send_button);
         button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                //enter押したときキーボードが閉じる処理
                 MyApplication.getInputMethodManager().hideSoftInputFromWindow(v.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
                 //検索バーに入力されている文字を取得
@@ -340,24 +352,5 @@ public class Menu1Activity {
                 searchResults.change();
             }
         });
-//
-
-        //店舗詳細画面へ遷移する
-//        LinearLayout layout =(LinearLayout) view.findViewById(R.id.test00);
-//        layout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getApplication(),Test2.class);
-//                //  ImageView icon01 = view.findViewById()(R.id.newicon01);
-//                TextView newfirstname01 = view.findViewById(R.id.newfirstname01);
-//
-//                String firstname = newfirstname01.getText().toString();
-//
-//                intent.putExtra("firstname",firstname);
-//
-//                startActivity(intent);
-//
-//            }
-//        });
     }
 }

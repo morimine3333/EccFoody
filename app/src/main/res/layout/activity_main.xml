@@ -69,8 +69,8 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="@color/colorRed"
-            android:src="@drawable/home11" />
+            app:backgroundTint="@color/colorRed"
+            app:srcCompat="@drawable/home11" />
 
         <LinearLayout
             android:layout_width="20dp"
@@ -84,8 +84,8 @@
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:backgroundTint="@color/colorRed"
-            android:src="@drawable/list11" />
+            app:backgroundTint="@color/colorRed"
+            app:srcCompat="@drawable/list11" />
 
         <LinearLayout
             android:layout_width="20dp"
@@ -99,8 +99,8 @@
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="@color/colorRed"
-            android:src="@drawable/togo11" />
+            app:backgroundTint="@color/colorRed"
+            app:srcCompat="@drawable/togo11" />
 
         <LinearLayout
             android:layout_width="20dp"
@@ -114,8 +114,8 @@
             android:layout_width="50dp"
             android:layout_height="60dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/colorRed"
-            android:src="@drawable/news11" />
+            app:backgroundTint="@color/colorRed"
+            app:srcCompat="@drawable/news11" />
 
         <LinearLayout
             android:layout_width="20dp"
@@ -128,8 +128,8 @@
             android:id="@+id/imageButton5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorRed"
-            android:src="@drawable/user111" />
+            app:backgroundTint="@color/colorRed"
+            app:srcCompat="@drawable/user111" />
 
         <LinearLayout
             android:layout_width="15dp"

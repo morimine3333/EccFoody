@@ -1,20 +1,30 @@
+//作成者:盛
+
 package com.example.a2170188.navigationdrawractivity;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 //https://qiita.com/ksugawara61/items/31e72681fff7d6d390e9
+//どこからでもcontexなどを取れるようにするソースファイル
 
 public class MyApplication extends Application {
     private static Context context;
     private static LayoutInflater inflater;
     private static FrameLayout frameLayout;
-    private static View view;
+    //スタック
+    private static Deque<View> deque = new ArrayDeque<>();
     private static InputMethodManager inputMethodManager;
+    private static Resources resources;
+    private static MainActivity mainActivity;
 
 
     /**
@@ -47,7 +57,15 @@ public class MyApplication extends Application {
     }
 
     public static void setView(View view) {
-        MyApplication.view = view;
+        MyApplication.deque.push(view);
+    }
+
+    public static void setResources() {
+        resources = MyApplication.getAppContext().getResources();
+    }
+
+    public static void setMainActivity(MainActivity mainActivityx) {
+        mainActivity = mainActivityx;
     }
 
     public static LayoutInflater getInflater() {
@@ -63,10 +81,19 @@ public class MyApplication extends Application {
     }
 
     public static View getView() {
-        return MyApplication.view;
+        return MyApplication.deque.pop();
     }
 
     public static Context getAppContext() {
         return MyApplication.context;
+    }
+
+    //getResourcesがオーバーライド判定くらう
+    public static Resources getR() {
+        return resources;
+    }
+
+    public static MainActivity getMainActivity() {
+        return mainActivity;
     }
 }

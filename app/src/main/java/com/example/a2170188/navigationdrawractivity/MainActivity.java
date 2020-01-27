@@ -5,26 +5,20 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ImageButton;
 
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.widget.Toolbar;
@@ -49,6 +43,11 @@ public class MainActivity extends AppCompatActivity {
 
     //登録アクティビティの onCreate メソッドで、FirebaseAuth オブジェクトの共有インスタンスを取得します。
     private FirebaseAuth mAuth;
+
+    //トップ画面とマイリスト画面の通信料を軽減するための変数
+    //応急措置
+    View view0;
+    View view1;
 
 //모리군은 최고로 섹시합니다.
     @Override
@@ -130,6 +129,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+
         //アプリ起動時の認証処理
         // Firebase Authを初期化する
         mAuth = FirebaseAuth.getInstance();
@@ -143,25 +144,30 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //https://qiita.com/Bth0061/items/c4f66477979d064913e4
-        //LayoutInflaterとFrameLayoutの共有化 どこからでも取り出せるようにしておく
+        //LayoutInflaterとFrameLayoutとInputMethodManagerの共有化 どこからでも取り出せるようにしておく
 //        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        //https://www.dogrow.net/android/blog8/　追記
+        //view作るための変数
         MyApplication.setInflater((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE));
+        //xmlの埋め込む場所の変数
         MyApplication.setFrameLayout((FrameLayout) findViewById(R.id.frame_layout));
+        //外部でリソースを取得するための変数
+        MyApplication.setResources();
+        //https://www.dogrow.net/android/blog8/　追記
+        //enter押したらキーボード閉じる処理用の変数
         MyApplication.setInputMethodManager((InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE));
+
+        MyApplication.setMainActivity(this);
+
+
 
         //アプリ起動時の画面遷移(ホーム画面)
         changeView(0);
-
     }
 
     private void changeView(int index) {
         LayoutInflater inflater = MyApplication.getInflater();
-
         FrameLayout frame = MyApplication.getFrameLayout();
 
-        //ここでおそらく画面切り替えが複数あった場合(画面が複数重なっている状態)
-        //リセットしてリソースを開放している
         if (frame.getChildCount() > 0) {
             frame.removeViewAt(0);
         }
@@ -172,30 +178,92 @@ public class MainActivity extends AppCompatActivity {
 
         switch (index) {
             case 0:
-                view = inflater.inflate(R.layout.activity_menu1, frame, false);
-                Menu1Activity menu1Activity = new Menu1Activity(frame, view);
-                menu1Activity.change();
-                break;
+//                //応急措置
+                if(view0 == null) {
+                    //トップ画面
+                    //更新ボタン必要
+                    view = inflater.inflate(R.layout.activity_menu1, frame, false);
+                    Menu1Activity menu1Activity = new Menu1Activity(view);
+                    menu1Activity.change();
+                    view0 = view;
+                    break;
+                } else {
+                    view = view0;
+                    break;
+                }
+
+//                view = inflater.inflate(R.layout.activity_menu1, frame, false);
+//                Menu1Activity menu1Activity = new Menu1Activity(view);
+//                menu1Activity.change();
+//                view0 = view;
+//                break;
             case 1:
-                view = inflater.inflate(R.layout.activity_menu2, frame, false);
-                break;
+                //応急措置
+                if(view1 == null) {
+                    //マイリスト画面
+                    //更新ボタン必要
+                    view = inflater.inflate(R.layout.activity_menu2, frame, false);
+                    Menu2Activity menu2Activity = new Menu2Activity();
+                    menu2Activity.change(view);
+                    view1 = view;
+                    break;
+                } else {
+                    view = view1;
+                    break;
+                }
+
+//                view = inflater.inflate(R.layout.activity_menu2, frame, false);
+////                Intent intent = new Intent(this, Menu2Activity.class);
+////                startActivity(intent);
+//
+//                Menu2Activity menu2Activity = new Menu2Activity();
+//                menu2Activity.change(view);
+//                view1 = view;
+//                break;
             case 2:
+                //投稿画面
                 view = inflater.inflate(R.layout.activity_menu3, frame, false);
+
+                //コメント投稿
+                view.findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+
+                //店舗新規登録
+                view.findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
                 break;
             case 3:
+                //未定 お知らせ画面の予定だったはず
                 view = inflater.inflate(R.layout.activity_menu4, frame, false);
                 break;
             case 4:
+                //マイページ画面
                 view = inflater.inflate(R.layout.activity_menu5, frame, false);
-                Menu5Activity menu5Activity = new Menu5Activity(frame, view);
+                Menu5Activity menu5Activity = new Menu5Activity(view);
                 menu5Activity.change();
                 break;
         }
 
+        //画面切り替え処理
         if (view != null) {
             Log.d(TAG, "changeView removeAllViews");
+            //リセットしてリソースを開放している
             frame.removeAllViews();
             frame.addView(view);
         }
+    }
+
+    // 戻るボタン押下
+    @Override
+    public void onBackPressed() {
+        // ここに保持しているviewに切り替える処理を書けばいい
     }
 }

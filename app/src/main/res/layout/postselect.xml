@@ -16,18 +16,18 @@
 
         <Button
             android:id="@+id/button"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginLeft="50dp"
-            android:text="コメント投稿" />
+            android:text="写真投稿" />
 
         <Button
             android:id="@+id/button2"
-            android:layout_width="117dp"
+            android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginLeft="100dp"
             android:layout_marginRight="50dp"
-            android:text="店舗新規登録" />
+            android:text="お店登録" />
 
     </LinearLayout>
 

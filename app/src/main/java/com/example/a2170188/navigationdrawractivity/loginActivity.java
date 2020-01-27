@@ -1,3 +1,5 @@
+//作成者:盛
+
 package com.example.a2170188.navigationdrawractivity;
 
 import android.content.Context;
@@ -19,6 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+//ログイン画面
 public class loginActivity extends AppCompatActivity {
 
     //タグの定数を定義 使っているクラス名?
@@ -50,10 +53,11 @@ public class loginActivity extends AppCompatActivity {
             // クリック時に呼ばれるメソッド
             @Override
             public void onClick(View view) {
+                //enterを押したときキーボードを閉じる処理
                 InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
                 inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 login();
-                Toast.makeText(loginActivity.this, "ログインボタン", Toast.LENGTH_LONG).show();
+//                Toast.makeText(loginActivity.this, "ログインボタン", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -67,7 +71,7 @@ public class loginActivity extends AppCompatActivity {
                 //新規登録画面に遷移
                 Intent intent = new Intent(loginActivity.this, registerActivity.class);
                 startActivity(intent);
-                Toast.makeText(loginActivity.this, "新規登録ボタン", Toast.LENGTH_LONG).show();
+//                Toast.makeText(loginActivity.this, "新規登録ボタン", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -79,25 +83,34 @@ public class loginActivity extends AppCompatActivity {
         String id = idText.getText().toString();
         String password = passwordText.getText().toString();
 
-        //ログイン判定
-        mAuth.signInWithEmailAndPassword(id, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // サインインに成功し、サインインしたユーザーの情報でUIを更新する
-                            Toast.makeText(loginActivity.this, "ログインに成功しました",
-                                    Toast.LENGTH_SHORT).show();
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            //ホーム画面へ遷移する
-                            finish();
-                        } else {
-                            //サインインに失敗した場合、ユーザーにメッセージを表示します。
-                            Toast.makeText(loginActivity.this, "ログインに失敗しました",
-                                    Toast.LENGTH_SHORT).show();
+        //判定
+        if(id.isEmpty()) {
+            Toast.makeText(loginActivity.this, "メールアドレスを入力して下さい", Toast.LENGTH_LONG).show();
+        } else if(password.isEmpty()) {
+            Toast.makeText(loginActivity.this, "パスワードを入力して下さい", Toast.LENGTH_LONG).show();
+        } else {
+
+
+            //ログイン判定
+            mAuth.signInWithEmailAndPassword(id, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // サインインに成功し、サインインしたユーザーの情報でUIを更新する
+                                Toast.makeText(loginActivity.this, "ログインに成功しました",
+                                        Toast.LENGTH_SHORT).show();
+//                            FirebaseUser user = mAuth.getCurrentUser();
+                                //ホーム画面へ遷移する
+                                finish();
+                            } else {
+                                //サインインに失敗した場合、ユーザーにメッセージを表示します。
+                                Toast.makeText(loginActivity.this, "ログインに失敗しました",
+                                        Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                });
+                    });
+        }
     }
 
     // 戻るボタン押下
