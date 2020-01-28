@@ -1,5 +1,7 @@
 package com.example.a2170188.navigationdrawractivity;
 
+//制作　佐野
+
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
