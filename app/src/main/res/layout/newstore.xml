@@ -21,11 +21,11 @@
             android:baselineAligned="false"
             android:orientation="vertical">
 
-        <EditText
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="国名"/>
+            android:text="ジャンル"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -33,6 +33,7 @@
                 android:orientation="vertical">
 
                 <Spinner
+                    android:id="@+id/genre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:entries="@array/list"></Spinner>
@@ -48,20 +49,32 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="店名(必須)"/>
+
                 <EditText
+                    android:id="@+id/storeName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="(例)三宅寿司"/>
+                    android:hint="(例)三宅寿司"
+                    android:inputType="text"
+                    />
+
+                <TextView
+                    android:id="@+id/storeError"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#ff0000"
+                    />
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:text="住所かTELをどちらかを入力(必須)"/>
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="5dp"-->
+<!--                        android:text="住所かTELをどちらかを入力(必須)"/>-->
 
                 </LinearLayout>
                 <LinearLayout
@@ -72,13 +85,21 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="TEL(ハイフンあり)"/>
+                        android:text="TEL(ハイフンあり)" />
 
                     <EditText
+                        android:id="@+id/tel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="(例)12-3456-7890"/>
+                        android:hint="(例)12-3456-7890"
+                        android:inputType="phone"/>
 
+                    <TextView
+                        android:id="@+id/telError"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#ff0000"
+                        />
 
                 </LinearLayout>
                 <LinearLayout
@@ -91,10 +112,20 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:text="住所"/>
+
                     <EditText
+                        android:id="@+id/streetAddress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="(例)大阪府大阪市北区中崎西2丁目3-35"/>
+                        android:hint="(例)大阪府大阪市北区中崎西2丁目3-35"
+                        android:inputType="text"/>
+
+                    <TextView
+                        android:id="@+id/streetAddressError"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#ff0000"
+                        />
 
                 </LinearLayout>
 
@@ -109,10 +140,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:text="予算(昼)"/>
+
                     <Spinner
+                        android:id="@+id/lunchBudget"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:entries="@array/ryokin"/>
+                        android:entries="@array/ryokin" />
 
                 </LinearLayout>
 
@@ -128,10 +161,18 @@
                         android:text="予算(夜)"/>
 
                     <Spinner
+                        android:id="@+id/dinnerBudget"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:entries="@array/ryokin"/>
+                        android:entries="@array/ryokin" />
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/budgetError"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#ff0000"
+                    />
 
 
                 <LinearLayout
@@ -150,6 +191,7 @@
                         android:orientation="horizontal">
 
                         <Spinner
+                            android:id="@+id/startHH"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:entries="@array/jikan" />
@@ -157,16 +199,19 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=" : "/>
-                     <Spinner
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:entries="@array/hun"/>
+
+                        <Spinner
+                            android:id="@+id/startMM"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:entries="@array/hun" />
                      <TextView
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
                          android:text=" ～ "/>
 
                         <Spinner
+                            android:id="@+id/endHH"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:entries="@array/jikan" />
@@ -174,10 +219,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=" : "/>
+
                         <Spinner
+                            android:id="@+id/endMM"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:entries="@array/hun"/>
+                            android:entries="@array/hun" />
 
 
                     </LinearLayout>
@@ -200,25 +247,29 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="月曜日"/>
+                        <CheckBox
+                            android:id="@+id/Mon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="月曜日" />
 
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="火曜日"/>
+                        <CheckBox
+                            android:id="@+id/Tue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="火曜日" />
 
-                     <CheckBox
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:text="水曜日"/>
+                        <CheckBox
+                            android:id="@+id/Wed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="水曜日" />
 
-                     <CheckBox
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:text="木曜日"/>
+                        <CheckBox
+                            android:id="@+id/Thu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="木曜日" />
 
 
                     </LinearLayout>
@@ -228,19 +279,22 @@
                         android:orientation="horizontal">
 
                         <CheckBox
+                            android:id="@+id/Fri"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="金曜日"/>
+                            android:text="金曜日" />
 
                         <CheckBox
+                            android:id="@+id/Sat"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="土曜日"/>
+                            android:text="土曜日" />
 
                         <CheckBox
+                            android:id="@+id/Sun"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="日曜日"/>
+                            android:text="日曜日" />
 
                     </LinearLayout>
 
@@ -253,11 +307,12 @@
                     android:orientation="vertical">
 
                     <Button
+                        android:id="@+id/register"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
-                        android:text="新規お店を登録する" />
+                        android:text="新規店舗を登録する" />
                 </LinearLayout>
 
             </LinearLayout>

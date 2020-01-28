@@ -2,8 +2,8 @@
 
 package com.example.a2170188.navigationdrawractivity;
 
+import android.app.Activity;
 import android.content.Context;
-import android.content.res.Resources;
 import android.location.Address;
 import android.location.Geocoder;
 import android.util.Log;
@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -42,7 +43,6 @@ import java.util.Locale;
 import java.util.Map;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 //Database2をMenu1Activityなど使うクラスで生成
@@ -77,6 +77,8 @@ public class Database2 {
     private int rankcount;
     //rankの写真用のカウント変数
     private int rankphotocount = -1;
+
+    Database2() {}
 
     //コレクションを指定
     Database2(String colPath) {
@@ -1308,5 +1310,38 @@ public class Database2 {
     //行ったリスト
     void went() {
 
+    }
+
+    //新規店舗登録
+    void newStore(String genre, String storeName, String tel, GeoPoint geoPoint, String lunchBudget,
+                  String dinnerBudget, String businessHours, Map<String, Boolean> weekMap,
+                  final Context context, final Activity activity) {
+
+
+        Map<String, Object> hashMap = new HashMap<>();
+        hashMap.put("genre", genre);
+        hashMap.put("name", storeName);
+        hashMap.put("tel", tel);
+        hashMap.put("Street address", geoPoint);
+        hashMap.put("lunch budget", Integer.parseInt(lunchBudget));
+        hashMap.put("dinner budget", Integer.parseInt(dinnerBudget));
+        hashMap.put("business hours", businessHours);
+        hashMap.put("Regular holiday", weekMap);
+
+        //値をデータベースにセット
+        colRef.document().set(hashMap, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d(TAG, "DocumentSnapshotが正常に書き込まれました！");
+                Toast.makeText(context, "登録しました!", Toast.LENGTH_SHORT).show();
+                activity.finish();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.w(TAG, "ドキュメントの書き込みエラー", e);
+                Toast.makeText(context, "登録に失敗しました", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
