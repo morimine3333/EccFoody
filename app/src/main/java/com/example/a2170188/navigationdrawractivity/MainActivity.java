@@ -1,3 +1,5 @@
+//作成者:金,盛
+
 package com.example.a2170188.navigationdrawractivity;
 
 
@@ -223,6 +225,24 @@ public class MainActivity extends AppCompatActivity {
             case 2:
                 //投稿画面
                 view = inflater.inflate(R.layout.activity_menu3, frame, false);
+
+                //コメント投稿
+                view.findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(MyApplication.getAppContext(),GetImageActivity.class);
+                        MyApplication.getAppContext().startActivity(intent);
+                    }
+                });
+
+                //店舗新規登録
+                view.findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(MyApplication.getAppContext(), NewStore.class);
+                        MyApplication.getAppContext().startActivity(intent);
+                    }
+                });
                 break;
             case 3:
                 //未定 お知らせ画面の予定だったはず
