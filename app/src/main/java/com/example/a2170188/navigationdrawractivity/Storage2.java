@@ -2,10 +2,9 @@
 
 package com.example.a2170188.navigationdrawractivity;
 
-import android.content.Context;
+import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -16,14 +15,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URL;
 
@@ -80,6 +78,52 @@ public class Storage2 {
                     Uri downloadUri = task.getResult();
                     Database2 db2 = new Database2("test");
                     db2.set("test", "test", downloadUri.toString());
+                } else {
+                    // Handle failures
+                    // ...
+                }
+            }
+        });
+
+        return folderPath + file.getLastPathSegment();
+    }
+
+    public String set2(String folderPath , File upimgPath, final DocumentReference documentReference, final Activity activity) {
+        //アップロードする画像のパスを指定する
+        //“/strage/emulated/0/” は内部ストレージを意味しています
+        //data/data/app_name/
+        ///storage/emulated/0/Download/150837603608136697178_(2215).jpg
+        ///storage/self/primary/Download/150837603608136697178_(2215).jpg
+        //Download以下はselfと同じ名前で対応する
+        Uri file = Uri.fromFile(upimgPath);
+
+        //????????? userid+ファイル名にすべき
+        final StorageReference imgRef = storageRef.child("comments" + "/" + folderPath + "/" + file.getLastPathSegment());
+        //putFile()がおそらく非同期処理
+        UploadTask uploadTask = imgRef.putFile(file);
+
+        //ダウンロード URL を取得
+        Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+            @Override
+            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                if (!task.isSuccessful()) {
+                    throw task.getException();
+                }
+
+                // Continue with the task to get the download URL
+                Log.d("TAG", imgRef.getDownloadUrl().toString());
+                return imgRef.getDownloadUrl();
+            }
+        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+            @Override
+            public void onComplete(@NonNull Task<Uri> task) {
+                if (task.isSuccessful()) {
+                    Uri downloadUri = task.getResult();
+                    Database2 db2 = new Database2("test");
+                    //これがURL
+                    Log.d("TAG", downloadUri.toString());
+                    documentReference.update("photolist", FieldValue.arrayUnion(downloadUri.toString()));
+                    activity.finish();
                 } else {
                     // Handle failures
                     // ...

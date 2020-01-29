@@ -33,6 +33,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -856,6 +857,9 @@ public class Database2 {
         //いいねボタンの押下状態の読み込み
         database2Value.setGoodFlg(false);
 
+        //名前タップの処理に必要
+        LinearLayout nameView = view.findViewById(R.id.nameView);
+
         FirebaseAuth mAuth;
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
@@ -961,6 +965,14 @@ public class Database2 {
                     }
                 }
             });
+
+            //名前押下時,ユーザー詳細画面に遷移
+            nameView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    userDetails(database2Value);
+                }
+            });
         } else {
             ((ImageView)view.findViewById(R.id.goodImage)).setVisibility(View.GONE);
             ((ImageView)view.findViewById(R.id.heartImage)).setVisibility(View.GONE);
@@ -974,20 +986,11 @@ public class Database2 {
         TextView resultfirstname = view.findViewById(R.id.resultfirstname);
         resultfirstname.setText(database2Value.getFirstname());
 
-        LinearLayout nameView = view.findViewById(R.id.nameView);
-
-
         //名
         TextView resultlastname = view.findViewById(R.id.resultlastname);
         resultlastname.setText(database2Value.getLastname());
 
-        //名前押下時,ユーザー詳細画面に遷移
-        nameView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                userDetails(database2Value);
-            }
-        });
+
 
         //投稿日
         TextView resultTime = view.findViewById(R.id.resultTime);
@@ -1203,20 +1206,41 @@ public class Database2 {
 
     //ユーザー詳細画面
     public void userDetails(Database2Value database2Value) {
-        //viewを取得
-        final View view =MyApplication.getInflater().inflate(R.layout.userdetails_layout, MyApplication.getFrameLayout(), false);
+        FirebaseAuth mAuth;
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        final String userID = user.getUid();
+        //ユーザーをタップした人が投稿者自身かどうかの判定
+        if(!database2Value.getPoster().equals(userID)) {
 
-        //アイコン
-        GlideApp.with(MyApplication.getAppContext()).load(database2Value.getIcon()).into((ImageView)view.findViewById(R.id.icon));
+            //viewを取得
+            final View view = MyApplication.getInflater().inflate(R.layout.userdetails_layout, MyApplication.getFrameLayout(), false);
 
-        //名前
-        ((TextView)view.findViewById(R.id.newfirstname01)).setText(database2Value.getFirstname());
-        ((TextView)view.findViewById(R.id.newlastname01)).setText(database2Value.getLastname());
+            //アイコン
+            GlideApp.with(MyApplication.getAppContext()).load(database2Value.getIcon()).into((ImageView) view.findViewById(R.id.icon));
 
-        //viewを配置
-        MyApplication.getFrameLayout().removeAllViews();
-        MyApplication.getFrameLayout().addView(view);
+            //名前
+            ((TextView) view.findViewById(R.id.newfirstname01)).setText(database2Value.getFirstname());
+            ((TextView) view.findViewById(R.id.newlastname01)).setText(database2Value.getLastname());
+
+            //viewを配置
+            MyApplication.getFrameLayout().removeAllViews();
+            MyApplication.getFrameLayout().addView(view);
+        }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //行きたいリスト
     public void favorite(String currentUserDocumentPath, final RecyclerView rv) {
@@ -1312,6 +1336,20 @@ public class Database2 {
 
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //新規店舗登録
     void newStore(String genre, String storeName, String tel, GeoPoint geoPoint, String lunchBudget,
                   String dinnerBudget, String businessHours, Map<String, Boolean> weekMap,
@@ -1343,5 +1381,130 @@ public class Database2 {
                 Toast.makeText(context, "登録に失敗しました", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+
+    //コメント投稿画面での店舗検索
+    public void search2(final Context context, final String searchText, final String searchGenre,
+                        final List<TextView> storeNameList, final List<ImageView> imgList,
+                        final Activity activity) {
+
+        db.collection("stores").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            int count;
+
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(!searchText.equals("")) {
+                    if (task.isSuccessful()) {
+                        for (final QueryDocumentSnapshot document : task.getResult()) {
+                            if (document.get("name").toString().contains(searchText) && document.get("genre").toString().contains(searchGenre)) {
+                                //何番目の処理か判断するための変数
+                                final int num = count;
+
+                                //店名
+                                storeNameList.get(num).setText(document.get("name").toString());
+
+                                final int photocount = num * 2;
+                                //写真
+                                db.collection("comments").whereEqualTo("store", document.getId()).get()
+                                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+
+
+                                            @Override
+                                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                if (task.isSuccessful()) {
+                                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                                        List<String> photolist = (List<String>) document.get("photolist");
+                                                        for (int i = 0; i < 2; i++) {
+                                                            try {
+                                                                GlideApp.with(context).load(photolist.get(i)).into(imgList.get(photocount + i));
+                                                            } catch (NullPointerException | IndexOutOfBoundsException e) {
+                                                                imgList.get(photocount + i).setVisibility(View.GONE);
+                                                            }
+
+                                                        }
+                                                    }
+                                                } else {
+                                                    Log.d(TAG, "Error getting documents: ", task.getException());
+                                                }
+                                            }
+                                        });
+
+
+                                //店舗Id
+                                final String storeID = document.getId();
+
+                                ViewGroup vg = (ViewGroup)storeNameList.get(num).getParent();
+                                vg.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        GetImageActivity.storeNameText.setText(document.get("name").toString());
+                                        GetImageActivity.storeID = storeID;
+                                        activity.finish();
+                                    }
+                                });
+
+                                count++;
+
+                            }
+                        }
+                    }
+                }
+
+                //検索結果が10件未満だった場合のlayout削除
+                while(count < 10) {
+                    ViewGroup vg = (ViewGroup)storeNameList.get(count).getParent();
+                    vg.removeAllViews();
+                    count++;
+                }
+            }
+        });
+    }
+
+    //コメント投稿処理
+
+    //先にDBでドキュメント作ってIDとって
+    //StorageにそのIDで階層を作り画像を保存
+    //そのあと,urlをDBの方に追加する
+    void commentPost(String storeID, String storeName,  String genre,  final File img, String text, final Activity activity) {
+        //投稿者のID取得
+        FirebaseAuth mAuth;
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        final String userID = user.getUid();
+
+        Map<String, Object> hashMap = new HashMap();
+        hashMap.put("store", storeID);
+        hashMap.put("storename", storeName);
+        hashMap.put("genre", genre);
+        hashMap.put("text", text);
+        hashMap.put("time", FieldValue.serverTimestamp());
+        hashMap.put("poster", userID);
+        hashMap.put("good", 0);
+        hashMap.put("goodlist", new ArrayList<String>());
+        hashMap.put("photolist", new ArrayList<String>());
+
+        Log.d("aaaaaaa", "走っている");
+        if(img != null) {
+            final DocumentReference documentReference = db.collection("comments").document();
+
+            documentReference.set(hashMap, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Log.d(TAG, "DocumentSnapshotが正常に書き込まれました！" + documentReference.getId());
+
+                    Storage2 storage2 = new Storage2();
+                    storage2.set2(documentReference.getId(), img, documentReference, activity);
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.w(TAG, "ドキュメントの書き込みエラー", e);
+                }
+            });
+
+        } else {
+            Log.d("aaaaaaa", "img取れず");
+        }
     }
 }

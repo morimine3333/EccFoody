@@ -49,6 +49,7 @@
         <activity android:name=".GetImageActivity" />
         <activity android:name=".GetCropImageActivity" />
         <activity android:name=".NewStore"/>
+        <activity android:name=".SearchResults"/>
         <activity android:name=".IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

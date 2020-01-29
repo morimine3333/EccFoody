@@ -7,30 +7,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="186dp"
-        android:layout_height="158dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginBottom="18dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
+    <TextView
+        android:id="@+id/search_site"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="選択店舗:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
-        app:srcCompat="@drawable/image_white" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/search_Store"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="未選択"
+        app:layout_constraintStart_toEndOf="@+id/search_site"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/search_Error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_site"
+        android:textColor="#ff0000"
+        android:text="ERROR"/>
 
     <EditText
         android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="40dp"
         android:layout_weight="0"
         android:background="@drawable/border"
         android:hint="@string/hint"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/search_Error"/>
 
     <LinearLayout
         android:id="@+id/linearLayout6"
@@ -57,15 +69,27 @@
             android:background="@color/colorWhite"
             android:text="@string/button" />
 
-
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="186dp"
+        android:layout_height="158dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
+        app:srcCompat="@drawable/image_white" />
+
 
     <LinearLayout
         android:id="@+id/llBottomNav"
         android:layout_width="0dp"
         android:layout_height="80dp"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="127dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="32dp"
         android:background="@color/colorWhite"
@@ -73,9 +97,10 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.554">
 
 
         <Button
@@ -96,11 +121,12 @@
         android:id="@+id/linearLayout5"
         android:layout_width="411dp"
         android:layout_height="266dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="31dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/tokobutton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView">
 
@@ -129,7 +155,7 @@
         android:layout_height="62dp"
         android:layout_marginStart="106dp"
         android:layout_marginEnd="85dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="16dp"
         android:background="#FFFFFF"
         android:text="投稿する"
         android:textAlignment="center"

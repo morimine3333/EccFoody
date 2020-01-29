@@ -164,12 +164,9 @@ public class NewStore extends AppCompatActivity {
                 weekMap.put("日曜日", checkBoxes[6].isChecked());
 
 
-
                 Database2 db2 = new Database2("stores");
                 db2.newStore(genre, storeName, tel, geoPoint, lunchBudget, dinnerBudget, businessHours, weekMap,
                         context, activity);
-
-
             }
         });
 

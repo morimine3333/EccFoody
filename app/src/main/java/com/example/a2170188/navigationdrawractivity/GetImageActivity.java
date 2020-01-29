@@ -3,6 +3,7 @@ package com.example.a2170188.navigationdrawractivity;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -13,12 +14,10 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gun0912.tedpermission.PermissionListener;
@@ -44,6 +43,13 @@ public class GetImageActivity extends AppCompatActivity {
     private static final int PICK_FROM_CAMERA = 2;
 
     private File tempFile;
+
+    final Context context = this;
+    final Activity activity = this;
+
+    //要修正
+    static TextView storeNameText;
+    static String storeID;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,11 +79,42 @@ public class GetImageActivity extends AppCompatActivity {
             }
         });
 
+
+        storeNameText = findViewById(R.id.search_Store);
+        //検索ボタン
+        findViewById(R.id.send_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //店名
+                String storeName = ((TextView)findViewById(R.id.text)).getText().toString();
+                //ジャンル
+                String genre = ((Spinner)findViewById(R.id.spinner)).getSelectedItem().toString();
+
+                //アクティビティ遷移
+                Intent intent = new Intent(context, SearchResults.class);
+                intent.putExtra("storeName", storeName);
+                intent.putExtra("genre", genre);
+
+                startActivity(intent);
+            }
+        });
+
         //投稿ボタン
         findViewById(R.id.tokobutton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(((TextView)findViewById(R.id.search_Store)).getText().toString().equals("未選択")) {
+                    ((TextView)findViewById(R.id.search_Error)).setText("店舗を選択してください");
+                    return;
+                }
 
+                //投稿処理
+                Database2 database2 = new Database2();
+                //店名, ジャンル, 画像, コメント
+                database2.commentPost(storeID, storeNameText.getText().toString(),
+                        ((Spinner)findViewById(R.id.spinner)).getSelectedItem().toString(),
+                        tempFile, ((TextView)findViewById(R.id.sample_EditText)).getText().toString(),
+                        activity);
             }
         });
 
@@ -214,7 +251,7 @@ public class GetImageActivity extends AppCompatActivity {
          *  (resultCode != RESULT_OK) 일 때 tempFile 을 삭제하기 때문에
          *  기존에 데이터가 남아 있게 되면 원치 않은 삭제가 이뤄집니다.
          */
-        tempFile = null;
+//        tempFile = null;
 
     }
 
@@ -264,28 +301,6 @@ public class GetImageActivity extends AppCompatActivity {
 
             }
         });
-
-        //検索結果画面へ遷移する
-        Button button = (Button) findViewById(R.id.send_button);
-        button.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                MyApplication.getInputMethodManager().hideSoftInputFromWindow(v.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-
-                //検索バーに入力されている文字を取得
-                EditText edittext = findViewById(R.id.text);
-                String text =  edittext.getText().toString();
-
-                //選択されているジャンルを取得
-                Spinner spinner = findViewById(R.id.spinner);
-                String genre =(String)spinner.getSelectedItem();
-
-                SearchResults searchResults = new SearchResults(text, genre);
-                searchResults.change();
-            }
-        });
-
-        //gomainButton
     }
 
 }
