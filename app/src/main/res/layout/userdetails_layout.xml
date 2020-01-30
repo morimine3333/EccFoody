@@ -117,11 +117,6 @@
                         android:layout_height="wrap_content">
 
                         <!-- アイコン-->
-                        <ImageView
-                            android:id="@+id/newicon01"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            />
 
 
                         <LinearLayout
@@ -130,6 +125,7 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:id="@+id/storeName1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="店名" />
@@ -140,29 +136,31 @@
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/text1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Title"
                         android:textSize="16sp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/time1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="320dp"
                         android:text="2019年12月30日"
-                        android:textSize="11sp"/>
+                        android:textSize="11sp" />
 
                     <!-- 写真-->
 
                     <ImageView
+                        android:id="@+id/image1"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
-                        android:layout_marginBottom="10dp"
-                        />
+                        android:layout_marginBottom="10dp" />
 
 
 
@@ -210,10 +208,6 @@
                             android:layout_height="wrap_content">
 
                             <!-- アイコン-->
-                            <ImageView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                />
 
 
                             <LinearLayout
@@ -222,6 +216,7 @@
                                 android:orientation="horizontal">
 
                                 <TextView
+                                    android:id="@+id/storeName2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="店名" />
@@ -232,29 +227,31 @@
                         </LinearLayout>
 
                         <TextView
+                            android:id="@+id/text2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Title"
                             android:textSize="16sp"
-                            android:textStyle="bold"/>
+                            android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/time2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="320dp"
                             android:text="2019年12月30日"
-                            android:textSize="11sp"/>
+                            android:textSize="11sp" />
 
                         <!-- 写真-->
 
                         <ImageView
+                            android:id="@+id/image2"
                             android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:layout_marginLeft="20dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            />
+                            android:layout_marginBottom="10dp" />
 
 
 
@@ -303,10 +300,6 @@
                             android:layout_height="wrap_content">
 
                             <!-- アイコン-->
-                            <ImageView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                />
 
 
                             <LinearLayout
@@ -315,6 +308,7 @@
                                 android:orientation="horizontal">
 
                                 <TextView
+                                    android:id="@+id/storeName3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="店名" />
@@ -325,29 +319,31 @@
                         </LinearLayout>
 
                         <TextView
+                            android:id="@+id/text3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Title"
                             android:textSize="16sp"
-                            android:textStyle="bold"/>
+                            android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/time3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="320dp"
                             android:text="2019年12月30日"
-                            android:textSize="11sp"/>
+                            android:textSize="11sp" />
 
                         <!-- 写真-->
 
                         <ImageView
+                            android:id="@+id/image3"
                             android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:layout_marginLeft="20dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            />
+                            android:layout_marginBottom="10dp" />
 
 
 
@@ -396,10 +392,6 @@
                             android:layout_height="wrap_content">
 
                             <!-- アイコン-->
-                            <ImageView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                />
 
 
                             <LinearLayout
@@ -408,6 +400,7 @@
                                 android:orientation="horizontal">
 
                                 <TextView
+                                    android:id="@+id/storeName4"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="店名" />
@@ -418,29 +411,31 @@
                         </LinearLayout>
 
                         <TextView
+                            android:id="@+id/text4"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Title"
                             android:textSize="16sp"
-                            android:textStyle="bold"/>
+                            android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/time4"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="320dp"
                             android:text="2019年12月30日"
-                            android:textSize="11sp"/>
+                            android:textSize="11sp" />
 
                         <!-- 写真-->
 
                         <ImageView
+                            android:id="@+id/image4"
                             android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:layout_marginLeft="20dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            />
+                            android:layout_marginBottom="10dp" />
 
 
 
@@ -489,10 +484,6 @@
                             android:layout_height="wrap_content">
 
                             <!-- アイコン-->
-                            <ImageView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                />
 
 
                             <LinearLayout
@@ -501,6 +492,7 @@
                                 android:orientation="horizontal">
 
                                 <TextView
+                                    android:id="@+id/storeName5"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="店名" />
@@ -511,29 +503,31 @@
                         </LinearLayout>
 
                         <TextView
+                            android:id="@+id/text5"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Title"
                             android:textSize="16sp"
-                            android:textStyle="bold"/>
+                            android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/time5"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="320dp"
                             android:text="2019年12月30日"
-                            android:textSize="11sp"/>
+                            android:textSize="11sp" />
 
                         <!-- 写真-->
 
                         <ImageView
+                            android:id="@+id/image5"
                             android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:layout_marginLeft="20dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            />
+                            android:layout_marginBottom="10dp" />
 
 
 
@@ -582,10 +576,6 @@
                             android:layout_height="wrap_content">
 
                             <!-- アイコン-->
-                            <ImageView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                />
 
 
                             <LinearLayout
@@ -594,6 +584,7 @@
                                 android:orientation="horizontal">
 
                                 <TextView
+                                    android:id="@+id/storeName6"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="店名" />
@@ -604,29 +595,31 @@
                         </LinearLayout>
 
                         <TextView
+                            android:id="@+id/text6"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Title"
                             android:textSize="16sp"
-                            android:textStyle="bold"/>
+                            android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/time6"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="320dp"
                             android:text="2019年12月30日"
-                            android:textSize="11sp"/>
+                            android:textSize="11sp" />
 
                         <!-- 写真-->
 
                         <ImageView
+                            android:id="@+id/image6"
                             android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:layout_marginLeft="20dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            />
+                            android:layout_marginBottom="10dp" />
 
 
 
@@ -674,10 +667,6 @@
                             android:layout_height="wrap_content">
 
                             <!-- アイコン-->
-                            <ImageView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                />
 
 
                             <LinearLayout
@@ -686,6 +675,7 @@
                                 android:orientation="horizontal">
 
                                 <TextView
+                                    android:id="@+id/storeName7"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="店名" />
@@ -696,29 +686,31 @@
                         </LinearLayout>
 
                         <TextView
+                            android:id="@+id/text7"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Title"
                             android:textSize="16sp"
-                            android:textStyle="bold"/>
+                            android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/time7"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="320dp"
                             android:text="2019年12月30日"
-                            android:textSize="11sp"/>
+                            android:textSize="11sp" />
 
                         <!-- 写真-->
 
                         <ImageView
+                            android:id="@+id/image7"
                             android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:layout_marginLeft="20dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            />
+                            android:layout_marginBottom="10dp" />
 
 
 
@@ -766,10 +758,6 @@
                             android:layout_height="wrap_content">
 
                             <!-- アイコン-->
-                            <ImageView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                />
 
 
                             <LinearLayout
@@ -778,6 +766,7 @@
                                 android:orientation="horizontal">
 
                                 <TextView
+                                    android:id="@+id/storeName8"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="店名" />
@@ -788,29 +777,31 @@
                         </LinearLayout>
 
                         <TextView
+                            android:id="@+id/text8"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Title"
                             android:textSize="16sp"
-                            android:textStyle="bold"/>
+                            android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/time8"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="320dp"
                             android:text="2019年12月30日"
-                            android:textSize="11sp"/>
+                            android:textSize="11sp" />
 
                         <!-- 写真-->
 
                         <ImageView
+                            android:id="@+id/image8"
                             android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:layout_marginLeft="20dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            />
+                            android:layout_marginBottom="10dp" />
 
 
 
@@ -858,10 +849,6 @@
                             android:layout_height="wrap_content">
 
                             <!-- アイコン-->
-                            <ImageView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                />
 
 
                             <LinearLayout
@@ -870,6 +857,7 @@
                                 android:orientation="horizontal">
 
                                 <TextView
+                                    android:id="@+id/storeName9"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="店名" />
@@ -880,29 +868,31 @@
                         </LinearLayout>
 
                         <TextView
+                            android:id="@+id/text9"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Title"
                             android:textSize="16sp"
-                            android:textStyle="bold"/>
+                            android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/time9"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="320dp"
                             android:text="2019年12月30日"
-                            android:textSize="11sp"/>
+                            android:textSize="11sp" />
 
                         <!-- 写真-->
 
                         <ImageView
+                            android:id="@+id/image9"
                             android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:layout_marginLeft="20dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            />
+                            android:layout_marginBottom="10dp" />
 
 
 
@@ -951,10 +941,6 @@
                             android:layout_height="wrap_content">
 
                             <!-- アイコン-->
-                            <ImageView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                />
 
 
                             <LinearLayout
@@ -963,6 +949,7 @@
                                 android:orientation="horizontal">
 
                                 <TextView
+                                    android:id="@+id/storeName10"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="店名" />
@@ -973,29 +960,31 @@
                         </LinearLayout>
 
                         <TextView
+                            android:id="@+id/text10"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Title"
                             android:textSize="16sp"
-                            android:textStyle="bold"/>
+                            android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/time10"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="320dp"
                             android:text="2019年12月30日"
-                            android:textSize="11sp"/>
+                            android:textSize="11sp" />
 
                         <!-- 写真-->
 
                         <ImageView
+                            android:id="@+id/image10"
                             android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:layout_marginLeft="20dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            />
+                            android:layout_marginBottom="10dp" />
 
 
 

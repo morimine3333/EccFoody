@@ -1,19 +1,13 @@
 package com.example.a2170188.navigationdrawractivity;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+
+import com.google.android.material.tabs.TabLayout;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-
-import com.google.android.material.tabs.TabLayout;
 
 public class Menu2Activity {
     private CharSequence[] tabTitle = {"行きたい", "行った", "フォロー", "フォロワー"};

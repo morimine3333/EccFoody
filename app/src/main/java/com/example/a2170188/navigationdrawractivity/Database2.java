@@ -805,12 +805,13 @@ public class Database2 {
                                                     for (QueryDocumentSnapshot document : task.getResult()) {
                                                         List<String> photolist = (List<String>) document.get("photolist");
                                                         for (int i = 0; i < 2; i++) {
-                                                            try {
-                                                                GlideApp.with(context).load(photolist.get(i)).into(imgList.get(photocount + i));
-                                                            } catch (NullPointerException | IndexOutOfBoundsException e) {
-                                                                imgList.get(photocount + i).setVisibility(View.GONE);
+                                                            if(imgList.get(photocount + i).getDrawable() == null) {
+                                                                try {
+                                                                    GlideApp.with(context).load(photolist.get(i)).into(imgList.get(photocount + i));
+                                                                } catch (NullPointerException | IndexOutOfBoundsException e) {
+                                                                    imgList.get(photocount + i).setVisibility(View.GONE);
+                                                                }
                                                             }
-
                                                         }
                                                     }
                                                 } else {
@@ -1226,6 +1227,55 @@ public class Database2 {
             //viewを配置
             MyApplication.getFrameLayout().removeAllViews();
             MyApplication.getFrameLayout().addView(view);
+
+
+            //店名配置するTextView
+            List<TextView> storeNames = Arrays.asList((TextView)view.findViewById(R.id.storeName1),
+                    (TextView)view.findViewById(R.id.storeName2), (TextView)view.findViewById(R.id.storeName3),
+                    (TextView)view.findViewById(R.id.storeName4), (TextView)view.findViewById(R.id.storeName5),
+                    (TextView)view.findViewById(R.id.storeName6), (TextView)view.findViewById(R.id.storeName7),
+                    (TextView)view.findViewById(R.id.storeName8), (TextView)view.findViewById(R.id.storeName9),
+                    (TextView)view.findViewById(R.id.storeName10));
+
+            //コメント内容配置するTextView
+            List<TextView> texts = Arrays.asList((TextView)view.findViewById(R.id.text1), (TextView)view.findViewById(R.id.text2),
+                    (TextView)view.findViewById(R.id.text3), (TextView)view.findViewById(R.id.text4),
+                    (TextView)view.findViewById(R.id.text5), (TextView)view.findViewById(R.id.text6),
+                    (TextView)view.findViewById(R.id.text7), (TextView)view.findViewById(R.id.text8),
+                    (TextView)view.findViewById(R.id.text9), (TextView)view.findViewById(R.id.text10));
+
+            //投稿時間配置するTextView
+            List<TextView> times = Arrays.asList((TextView)view.findViewById(R.id.time1), (TextView)view.findViewById(R.id.time2),
+                    (TextView)view.findViewById(R.id.time3), (TextView)view.findViewById(R.id.time4),
+                    (TextView)view.findViewById(R.id.time5), (TextView)view.findViewById(R.id.time6),
+                    (TextView)view.findViewById(R.id.time7), (TextView)view.findViewById(R.id.time8),
+                    (TextView)view.findViewById(R.id.time9), (TextView)view.findViewById(R.id.time10));
+
+            //画像配置するImageView
+//            List<ImageView> images = Arrays.asList((ImageView)view.findViewById(R.id.image1),);
+
+//             db.collection("comments").whereEqualTo("poster", database2Value.getPoster()).
+//                     orderBy("time", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                 int count = 0;
+//
+//                 @Override
+//                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                     if (task.isSuccessful()) {
+//                         for (DocumentSnapshot documentSnapshot : task.getResult()) {
+//
+//                         }
+//
+//                         //検索結果が10件未満だった場合のlayout削除
+//                         while (count < 10) {
+//                             ViewGroup vg = (ViewGroup) storeNameList.get(count).getParent();
+//                             vg.removeAllViews();
+//                             count++;
+//                         }
+//                     } else {
+//                         //コメントを1件も投稿していない
+//                     }
+//                 }
+//             });
         }
     }
 

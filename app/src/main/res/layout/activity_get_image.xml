@@ -29,8 +29,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_site"
-        android:textColor="#ff0000"
-        android:text="ERROR"/>
+        android:textColor="#ff0000" />
 
     <EditText
         android:id="@+id/text"
