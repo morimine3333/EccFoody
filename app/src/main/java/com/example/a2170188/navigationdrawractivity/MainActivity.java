@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     View view0;
     View view1;
 
-//모리군은 최고로 섹시합니다.
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,7 +80,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_tag:
                         Toast.makeText(MainActivity.this, "nav_tag", Toast.LENGTH_SHORT).show();
                     case R.id.nav_tool:
-                        Toast.makeText(MainActivity.this, "nav_tool", Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(MainActivity.this, "nav_tool", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(MyApplication.getAppContext(),DevelopeActivity.class);
+                        MyApplication.getAppContext().startActivity(intent);
                     case R.id.nav_calendar:
                         Toast.makeText(MainActivity.this, "nav_calendar", Toast.LENGTH_SHORT).show();
                         break;
