@@ -5,6 +5,7 @@ package com.example.a2170188.navigationdrawractivity;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,6 +26,16 @@ public class Menu5Activity{
     }
 
     public void change() {
+        FirebaseAuth mAuth;
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        final String userID = user.getUid();
+
+        Database2 database2 = new Database2();
+
+        database2.name((TextView)view.findViewById(R.id.textView5), (TextView)view.findViewById(R.id.textView6), userID);
+
+
         Button button5 = view.findViewById(R.id.button5);
 
         button5.setOnClickListener(new View.OnClickListener() {

@@ -266,14 +266,4 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         // ここに保持しているviewに切り替える処理を書けばいい
     }
-
-    private void reload() {
-        Intent intent = getIntent();
-        overridePendingTransition(0, 0);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        finish();
-
-        overridePendingTransition(0, 0);
-        startActivity(intent);
-    }
 }
