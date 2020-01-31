@@ -1,3 +1,5 @@
+//作成者:盛
+
 package com.example.a2170188.navigationdrawractivity;
 
 import android.util.Log;
@@ -6,7 +8,7 @@ import android.view.View;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 public class Menu2Activity {
@@ -19,7 +21,10 @@ public class Menu2Activity {
         //2回目以降はそもそもgetItemが動かない
         //MyApplication.getMainActivity().getSupportFragmentManager()
 //        this.getChildFragmentManager();
-        FragmentPagerAdapter adapter = new FragmentPagerAdapter(MyApplication.getMainActivity().getSupportFragmentManager()) {
+        //FragmentPagerAdapter
+        //https://stackoverflow.com/questions/12581896/fragmentpageradapter-getitem-is-not-called
+        //FragmentStatePagerAdapter
+        FragmentStatePagerAdapter adapter = new FragmentStatePagerAdapter(MyApplication.getMainActivity().getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
                 Log.d(TAG, "getItem: " + position);

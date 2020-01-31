@@ -4,7 +4,6 @@ package com.example.a2170188.navigationdrawractivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -15,7 +14,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -102,6 +100,16 @@ public class loginActivity extends AppCompatActivity {
 //                            FirebaseUser user = mAuth.getCurrentUser();
                                 //ホーム画面へ遷移する
                                 finish();
+
+                                //再ログイン時の再起動処理
+                                //https://www.hohog.net/activity_reload/
+                                Intent intent = MyApplication.getMainActivity().getIntent();
+                                overridePendingTransition(0, 0);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                finish();
+
+                                overridePendingTransition(0, 0);
+                                startActivity(intent);
                             } else {
                                 //サインインに失敗した場合、ユーザーにメッセージを表示します。
                                 Toast.makeText(loginActivity.this, "ログインに失敗しました",

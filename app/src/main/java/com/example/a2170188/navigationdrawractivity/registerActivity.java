@@ -2,8 +2,8 @@
 
 package com.example.a2170188.navigationdrawractivity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -12,11 +12,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import io.opencensus.internal.StringUtils;
 
 //新規登録画面
 public class registerActivity extends AppCompatActivity {
@@ -66,6 +64,16 @@ public class registerActivity extends AppCompatActivity {
                                         Toast.LENGTH_SHORT).show();
 //                                FirebaseUser user = mAuth.getCurrentUser();
                                 finish();
+
+                                //再ログイン時の再起動処理
+                                //https://www.hohog.net/activity_reload/
+                                Intent intent = MyApplication.getMainActivity().getIntent();
+                                overridePendingTransition(0, 0);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                finish();
+
+                                overridePendingTransition(0, 0);
+                                startActivity(intent);
                             } else {
                                 //サインインに失敗した場合、ユーザーにメッセージを表示します。
                                 Toast.makeText(registerActivity.this, "作成失敗",

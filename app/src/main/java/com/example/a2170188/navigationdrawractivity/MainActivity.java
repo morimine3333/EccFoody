@@ -3,13 +3,8 @@
 package com.example.a2170188.navigationdrawractivity;
 
 
-import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,15 +12,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ImageButton;
-
-
-import android.content.Intent;
 import android.widget.Toolbar;
 
-import java.lang.ref.WeakReference;
+import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 //コンストラクタをいじったactivityを開始しようとするとインスタンス生成出来ないと言われる
 ////https://ja.stackoverflow.com/questions/4257/activity%E3%82%92%E7%B6%99%E6%89%BF%E3%81%97%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84%E3%82%AF%E3%83%A9%E3%82%B9%E3%81%8B%E3%82%89%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E3%82%92%E8%A1%8C%E3%81%86
@@ -200,28 +196,28 @@ public class MainActivity extends AppCompatActivity {
 //                view0 = view;
 //                break;
             case 1:
-                //応急措置
-                if(view1 == null) {
-                    //マイリスト画面
-                    //更新ボタン必要
-                    view = inflater.inflate(R.layout.activity_menu2, frame, false);
-                    Menu2Activity menu2Activity = new Menu2Activity();
-                    menu2Activity.change(view);
-                    view1 = view;
-                    break;
-                } else {
-                    view = view1;
-                    break;
-                }
+//                //応急措置
+//                if(view1 == null) {
+//                    //マイリスト画面
+//                    //更新ボタン必要
+//                    view = inflater.inflate(R.layout.activity_menu2, frame, false);
+//                    Menu2Activity menu2Activity = new Menu2Activity();
+//                    menu2Activity.change(view);
+//                    view1 = view;
+//                    break;
+//                } else {
+//                    view = view1;
+//                    break;
+//                }
 
-//                view = inflater.inflate(R.layout.activity_menu2, frame, false);
-////                Intent intent = new Intent(this, Menu2Activity.class);
-////                startActivity(intent);
-//
-//                Menu2Activity menu2Activity = new Menu2Activity();
-//                menu2Activity.change(view);
-//                view1 = view;
-//                break;
+                view = inflater.inflate(R.layout.activity_menu2, frame, false);
+//                Intent intent = new Intent(this, Menu2Activity.class);
+//                startActivity(intent);
+
+                Menu2Activity menu2Activity = new Menu2Activity();
+                menu2Activity.change(view);
+                view1 = view;
+                break;
             case 2:
                 //投稿画面
                 view = inflater.inflate(R.layout.activity_menu3, frame, false);
@@ -269,5 +265,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         // ここに保持しているviewに切り替える処理を書けばいい
+    }
+
+    private void reload() {
+        Intent intent = getIntent();
+        overridePendingTransition(0, 0);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        finish();
+
+        overridePendingTransition(0, 0);
+        startActivity(intent);
     }
 }
