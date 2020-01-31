@@ -74,11 +74,13 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "nav_money_input", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.nav_tag:
-                        Toast.makeText(MainActivity.this, "nav_tag", Toast.LENGTH_SHORT).show();
+                        //MyLocationDemoActivity
+                        Intent intent1 = new Intent(MyApplication.getAppContext(),MyLocationDemoActivity.class);
+                        MyApplication.getAppContext().startActivity(intent1);
                     case R.id.nav_tool:
                        // Toast.makeText(MainActivity.this, "nav_tool", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(MyApplication.getAppContext(),DevelopeActivity.class);
-                        MyApplication.getAppContext().startActivity(intent);
+                        Intent intent2 = new Intent(MyApplication.getAppContext(),DevelopeActivity.class);
+                        MyApplication.getAppContext().startActivity(intent2);
                     case R.id.nav_calendar:
                         Toast.makeText(MainActivity.this, "nav_calendar", Toast.LENGTH_SHORT).show();
                         break;

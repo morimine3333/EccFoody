@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.a2170188.navigationdrawractivity">
-
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the 'MyLocation' functionality.
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <!-- camera, gallery -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- camera, gallery -->
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name= "com.example.a2170188.navigationdrawractivity.MyApplication"
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/icon3"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".DevelopeActivity"></activity>
 
+        <activity android:name=".MyLocationDemoActivity"></activity>
+        <activity android:name=".test1"></activity>
+        <activity android:name=".test2"></activity>
+        <activity android:name=".test3"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -37,7 +40,7 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps" />
         <activity android:name=".Menu5Activity" />
         <activity android:name=".Menu4Activity" />
         <activity android:name=".Menu3Activity" />
@@ -48,8 +51,7 @@
         <activity android:name=".registerActivity" />
         <activity android:name=".GetImageActivity" />
         <activity android:name=".GetCropImageActivity" />
-        <activity android:name=".NewStore"/>
-        <activity android:name=".SearchResults"/>
+        <activity android:name=".NewStore" />
         <activity android:name=".IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

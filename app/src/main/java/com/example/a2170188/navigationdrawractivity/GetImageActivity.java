@@ -1,4 +1,5 @@
 //作成者：金在愚
+//SDK MANAGER で　google play sevices ダウンロードしてください。
 package com.example.a2170188.navigationdrawractivity;
 
 import android.Manifest;
