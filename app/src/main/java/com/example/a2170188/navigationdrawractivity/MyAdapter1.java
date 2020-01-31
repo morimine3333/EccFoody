@@ -28,6 +28,8 @@ public class MyAdapter1 extends RecyclerView.Adapter<MyAdapter1.MyViewHolder>{
     private List<String> dinnerBudgets;
     private List<String> genres;
 
+    //長さ
+    public int size;
 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
@@ -40,6 +42,8 @@ public class MyAdapter1 extends RecyclerView.Adapter<MyAdapter1.MyViewHolder>{
         public ImageView dinnerIcon;
         public TextView dinnerBudget;
         public TextView genre;
+
+
 
         public MyViewHolder(View v){
             super(v);
@@ -55,12 +59,14 @@ public class MyAdapter1 extends RecyclerView.Adapter<MyAdapter1.MyViewHolder>{
         }
     }
 
-    public MyAdapter1(List<String> storeNames, List<String> storeImgs, List<String> lunchBudgets, List<String> dinnerBudgets, List<String> genres){
+    public MyAdapter1(List<String> storeNames, List<String> storeImgs, List<String> lunchBudgets, List<String> dinnerBudgets, List<String> genres, int size){
         this.storeNames = storeNames;
         this.storeImgs = storeImgs;
         this.lunchBudgets = lunchBudgets;
         this.dinnerBudgets = dinnerBudgets;
         this.genres = genres;
+
+        this.size = size;
     }
 
     @Override
@@ -104,6 +110,8 @@ public class MyAdapter1 extends RecyclerView.Adapter<MyAdapter1.MyViewHolder>{
 //        GlideApp.(holder.storeImg)
     }
 
+    //件数を決めている
     @Override
-    public int getItemCount() { return storeNames.size(); }
+    public int getItemCount() { return size; }
+    //storeNames.size()
 }
