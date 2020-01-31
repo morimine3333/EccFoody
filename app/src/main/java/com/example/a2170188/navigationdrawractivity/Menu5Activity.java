@@ -2,24 +2,16 @@
 
 package com.example.a2170188.navigationdrawractivity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.lang.ref.WeakReference;
+import androidx.annotation.NonNull;
 
 public class Menu5Activity{
     View view;
@@ -47,14 +39,14 @@ public class Menu5Activity{
 
         Button button6 = view.findViewById(R.id.button6);
 
-        button6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Toast.makeText(Menu5Activity.this, "退会ボタン", Toast.LENGTH_LONG).show();
-                delete();
-                //ログイン画面への遷移の処理を追加
-            }
-        });
+//        button6.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                Toast.makeText(Menu5Activity.this, "退会ボタン", Toast.LENGTH_LONG).show();
+//                delete();
+//                //ログイン画面への遷移の処理を追加
+//            }
+//        });
     }
 
     private void logout() {

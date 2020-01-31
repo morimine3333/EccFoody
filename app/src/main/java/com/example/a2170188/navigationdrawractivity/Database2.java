@@ -1230,7 +1230,7 @@ public class Database2 {
 
 
             //店名配置するTextView
-            List<TextView> storeNames = Arrays.asList((TextView)view.findViewById(R.id.storeName1),
+            final List<TextView> storeNames = Arrays.asList((TextView)view.findViewById(R.id.storeName1),
                     (TextView)view.findViewById(R.id.storeName2), (TextView)view.findViewById(R.id.storeName3),
                     (TextView)view.findViewById(R.id.storeName4), (TextView)view.findViewById(R.id.storeName5),
                     (TextView)view.findViewById(R.id.storeName6), (TextView)view.findViewById(R.id.storeName7),
@@ -1238,44 +1238,70 @@ public class Database2 {
                     (TextView)view.findViewById(R.id.storeName10));
 
             //コメント内容配置するTextView
-            List<TextView> texts = Arrays.asList((TextView)view.findViewById(R.id.text1), (TextView)view.findViewById(R.id.text2),
+            final List<TextView> texts = Arrays.asList((TextView)view.findViewById(R.id.text1), (TextView)view.findViewById(R.id.text2),
                     (TextView)view.findViewById(R.id.text3), (TextView)view.findViewById(R.id.text4),
                     (TextView)view.findViewById(R.id.text5), (TextView)view.findViewById(R.id.text6),
                     (TextView)view.findViewById(R.id.text7), (TextView)view.findViewById(R.id.text8),
                     (TextView)view.findViewById(R.id.text9), (TextView)view.findViewById(R.id.text10));
 
             //投稿時間配置するTextView
-            List<TextView> times = Arrays.asList((TextView)view.findViewById(R.id.time1), (TextView)view.findViewById(R.id.time2),
+            final List<TextView> times = Arrays.asList((TextView)view.findViewById(R.id.time1), (TextView)view.findViewById(R.id.time2),
                     (TextView)view.findViewById(R.id.time3), (TextView)view.findViewById(R.id.time4),
                     (TextView)view.findViewById(R.id.time5), (TextView)view.findViewById(R.id.time6),
                     (TextView)view.findViewById(R.id.time7), (TextView)view.findViewById(R.id.time8),
                     (TextView)view.findViewById(R.id.time9), (TextView)view.findViewById(R.id.time10));
 
             //画像配置するImageView
-//            List<ImageView> images = Arrays.asList((ImageView)view.findViewById(R.id.image1),);
+            final List<ImageView> images = Arrays.asList((ImageView)view.findViewById(R.id.image1), (ImageView)view.findViewById(R.id.image2),
+                    (ImageView)view.findViewById(R.id.image3), (ImageView)view.findViewById(R.id.image4), (ImageView)view.findViewById(R.id.image5),
+                    (ImageView)view.findViewById(R.id.image6), (ImageView)view.findViewById(R.id.image7),
+                    (ImageView)view.findViewById(R.id.image8), (ImageView)view.findViewById(R.id.image9),
+                    (ImageView)view.findViewById(R.id.image10));
 
-//             db.collection("comments").whereEqualTo("poster", database2Value.getPoster()).
-//                     orderBy("time", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                 int count = 0;
-//
-//                 @Override
-//                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                     if (task.isSuccessful()) {
-//                         for (DocumentSnapshot documentSnapshot : task.getResult()) {
-//
-//                         }
-//
-//                         //検索結果が10件未満だった場合のlayout削除
-//                         while (count < 10) {
-//                             ViewGroup vg = (ViewGroup) storeNameList.get(count).getParent();
-//                             vg.removeAllViews();
-//                             count++;
-//                         }
-//                     } else {
-//                         //コメントを1件も投稿していない
-//                     }
-//                 }
-//             });
+            Log.d("ffffffffffffff", "ffffffffffffffffffffffffffff");
+
+             db.collection("comments").whereEqualTo("poster", database2Value.getPoster()).
+                     orderBy("time", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                 int count = 0;
+
+                 @Override
+                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                     if (task.isSuccessful()) {
+                         for (DocumentSnapshot documentSnapshot : task.getResult()) {
+                             int c = count;
+
+                             //店名
+                            storeNames.get(c).setText(documentSnapshot.get("storename").toString());
+
+                            //コメント
+                             texts.get(c).setText(documentSnapshot.get("text").toString());
+
+                            //投稿時間
+                             times.get(c).setText(new SimpleDateFormat("yyyy/MM/dd").format(documentSnapshot.getTimestamp("time").toDate()));
+
+                             //写真
+                             try {
+                                 List<String> photos = (ArrayList<String>)documentSnapshot.get("photolist");
+                                 GlideApp.with(MyApplication.getAppContext()).load(photos.get(0)).into(images.get(c));
+                             } catch (NullPointerException | IndexOutOfBoundsException e) {
+                                images.get(c).setVisibility(View.GONE);
+                             }
+
+
+                            count++;
+                         }
+
+                         //検索結果が10件未満だった場合のlayout削除
+                         while (count < 10) {
+                             ViewGroup vg = (ViewGroup) texts.get(count).getParent();
+                             vg.removeAllViews();
+                             count++;
+                         }
+                     } else {
+                         //コメントを1件も投稿していない
+                     }
+                 }
+             });
         }
     }
 
@@ -1321,7 +1347,8 @@ public class Database2 {
                 try {
                     for (final String storeDocumentPath : favorites) {
 
-                        db.collection("stores").document(storeDocumentPath).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        db.collection("stores").document(storeDocumentPath).get().
+                                addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
 
                             @Override
                             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -1336,8 +1363,10 @@ public class Database2 {
                                 final int count2 = count;
 
 //                            コメント表への問い合わせ
-                                //db.collection("comments").whereEqualTo("store", storeDocumentPath).limit(1).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                db.collection("comments").whereEqualTo("store", storeDocumentPath).limit(1).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                //db.collection("comments").whereEqualTo("store", storeDocumentPath).
+                                // limit(1).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                db.collection("comments").whereEqualTo("store", storeDocumentPath).
+                                        limit(1).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                     @Override
                                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
@@ -1351,7 +1380,7 @@ public class Database2 {
                                                 database2Value.addNaibu();
 
                                                 if (favorites.size() == database2Value.getNaibu()) {
-                                                    MyAdapter1 adapter = new MyAdapter1(storeNames, images, lunchBudgets, dinnerBudgets, genres);
+                                                    MyAdapter1 adapter = new MyAdapter1(storeNames, images, lunchBudgets, dinnerBudgets, genres, favorites.size());
                                                     rv.setAdapter(adapter);
                                                     count = 0;
                                                 }
@@ -1366,11 +1395,11 @@ public class Database2 {
 
                                 count++;
 
-                                if (favorites.size() == count) {
-                                    MyAdapter1 adapter = new MyAdapter1(storeNames, images, lunchBudgets, dinnerBudgets, genres);
-                                    rv.setAdapter(adapter);
-                                    count = 0;
-                                }
+//                                if (favorites.size() == count) {
+//                                    MyAdapter1 adapter = new MyAdapter1(storeNames, images, lunchBudgets, dinnerBudgets, genres);
+//                                    rv.setAdapter(adapter);
+//                                    count = 0;
+//                                }
                             }
                         });
                     }
@@ -1382,7 +1411,66 @@ public class Database2 {
     }
 
     //行ったリスト
-    void went() {
+    //店名 写真 昼予算 夜予算 ジャンルが必要
+    void went(String currentUserDocumentPath, final RecyclerView rv) {
+        //コメント表へ問い合わせ
+        db.collection("comments").whereEqualTo("poster", currentUserDocumentPath).
+                get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                int count = 0;
+
+                String[] h = new String[10];
+                final List<String> storeNames = Arrays.asList(h);
+                final List<String> images = new ArrayList<>();
+                final List<String> dinnerBudgets = Arrays.asList(h);
+                final List<String> lunchBudgets = Arrays.asList(h);
+                final List<String> genres = Arrays.asList(h);
+
+                final Database2Value database2Value = new Database2Value();
+                database2Value.setNaibu(0);
+
+                if (task.isSuccessful()) {
+                    QuerySnapshot qs = task.getResult();
+                    final int end = qs.size();
+                    Log.d(TAG, String.valueOf(end));
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+
+                        //写真取得
+                        List<String> photolist = (List<String>) document.get("photolist");
+                        images.add(photolist.get(0));
+
+                        final int count2 = count;
+
+                        //店名と昼と夜とジャンル取得
+                        db.collection("stores").document(document.get("store").toString()).get().
+                                addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+
+                                    @Override
+                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                        DocumentSnapshot documentSnapshot1 = task.getResult();
+
+                                        storeNames.set(count2, documentSnapshot1.get("name").toString());
+                                        lunchBudgets.set(count2, documentSnapshot1.get("lunch budget").toString() + "円");
+                                        dinnerBudgets.set(count2, documentSnapshot1.get("dinner budget").toString() + "円");
+                                        genres.set(count2, documentSnapshot1.get("genre").toString());
+
+                                        database2Value.addNaibu();
+
+                                        if (end == database2Value.getNaibu()) {
+                                            MyAdapter1 adapter = new MyAdapter1(storeNames, images, lunchBudgets, dinnerBudgets, genres, end);
+                                            rv.setAdapter(adapter);
+                                        }
+                                    }
+                                });
+
+                        count++;
+                    }
+                } else {
+                    Log.d(TAG, "Error getting documents: ", task.getException());
+                }
+            }
+        });
 
     }
 
