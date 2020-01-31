@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -7,28 +8,41 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="150dp"
+        android:background="#FFC107"
         android:orientation="vertical"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="320dp">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="161dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:text="コメント投稿" />
+
+        <LinearLayout
+            android:layout_width="83dp"
+            android:layout_height="match_parent"
+            android:background="#FFC107" />
+
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="161dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:text="店舗新規登録" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:background="#FFC107"
+        android:orientation="vertical"/>
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="100dp"
-            android:layout_marginLeft="50dp"
-            android:text="コメント投稿" />
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="117dp"
-            android:layout_height="100dp"
-            android:layout_marginLeft="100dp"
-            android:layout_marginRight="50dp"
-            android:text="店舗新規登録" />
-
-    </LinearLayout>
 
 </LinearLayout>
