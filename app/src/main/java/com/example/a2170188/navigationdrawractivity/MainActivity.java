@@ -77,10 +77,12 @@ public class MainActivity extends AppCompatActivity {
                         //MyLocationDemoActivity
                         Intent intent1 = new Intent(MyApplication.getAppContext(),MyLocationDemoActivity.class);
                         MyApplication.getAppContext().startActivity(intent1);
+                        break;
                     case R.id.nav_tool:
                        // Toast.makeText(MainActivity.this, "nav_tool", Toast.LENGTH_SHORT).show();
                         Intent intent2 = new Intent(MyApplication.getAppContext(),DevelopeActivity.class);
                         MyApplication.getAppContext().startActivity(intent2);
+                        break;
                     case R.id.nav_calendar:
                         Toast.makeText(MainActivity.this, "nav_calendar", Toast.LENGTH_SHORT).show();
                         break;
