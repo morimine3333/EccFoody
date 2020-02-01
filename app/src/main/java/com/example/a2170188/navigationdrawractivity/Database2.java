@@ -1645,4 +1645,39 @@ public class Database2 {
             Log.d("aaaaaaa", "img取れず");
         }
     }
+
+    //マイページ
+    void name(final TextView firstName, final TextView lastName, String userID) {
+        db.collection("users").document(userID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        firstName.setText(document.get("firstname").toString());
+                        lastName.setText(document.get("lastname").toString());
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+    }
+
+    //新規登録ユーザー情報登録
+    void shinki(String firstName, String lastName, String userID) {
+        Map<String, Object> map = new HashMap<>();
+
+        List<String> favoriteList = new ArrayList<>();
+
+
+        map.put("firstname", firstName);
+        map.put("lastname", lastName);
+        map.put("icon", "https://firebasestorage.googleapis.com/v0/b/ecc-foody.appspot.com/o/icon%2Fspace.png?alt=media&token=74283ec5-2024-48d2-b78a-5a00dd385ff8");
+        map.put("favoritelist", favoriteList);
+
+        db.collection("users").document(userID).set(map);
+    }
 }
