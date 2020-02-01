@@ -1421,11 +1421,15 @@ public class Database2 {
                 int count = 0;
 
                 String[] h = new String[10];
+                String[] h1 = new String[10];
+                String[] h2 = new String[10];
+                String[] h3 = new String[10];
+                String[] h4 = new String[10];
                 final List<String> storeNames = Arrays.asList(h);
                 final List<String> images = new ArrayList<>();
-                final List<String> dinnerBudgets = Arrays.asList(h);
-                final List<String> lunchBudgets = Arrays.asList(h);
-                final List<String> genres = Arrays.asList(h);
+                final List<String> dinnerBudgets = Arrays.asList(h2);
+                final List<String> lunchBudgets = Arrays.asList(h3);
+                final List<String> genres = Arrays.asList(h4);
 
                 final Database2Value database2Value = new Database2Value();
                 database2Value.setNaibu(0);
